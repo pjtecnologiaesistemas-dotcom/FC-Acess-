@@ -1675,18 +1675,37 @@
   }
   #mod-busca .mod-panel {
     flex: none;
-    width: 560px;
+    width: 580px;
     max-width: 96vw;
-    max-height: 88vh;
-    border-radius: 16px;
+    max-height: 90vh;
+    border-radius: 18px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    box-shadow: 0 24px 72px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.04);
+  }
+  /* ── Footer responsivo ───────────────── */
+  .wiz-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; border-top: 2px solid var(--border);
+    gap: 8px; background: var(--surface); flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+  .wiz-footer-info {
+    font-size: 10px; color: var(--text-muted); flex: 1; min-width: 120px;
   }
   @media (max-width: 600px) {
     #mod-busca { align-items: flex-end; flex-direction: column; }
-    #mod-busca .mod-panel { width: 100%; max-width: 100%; max-height: 96vh; border-radius: 16px 16px 0 0; }
+    #mod-busca .mod-panel { width: 100%; max-width: 100%; max-height: 96vh; border-radius: 20px 20px 0 0; }
+    .wiz-row2 { grid-template-columns: 1fr; }
+    .wiz-row3 { grid-template-columns: 1fr 1fr; }
+    .wiz-footer { padding: 10px 12px; gap: 6px; }
+    .wiz-footer-info { display: none; }
+  }
+  @media (max-width: 400px) {
+    .wiz-type-btns { gap: 4px; }
+    .wiz-type-btn { min-width: 60px; font-size: 10px; padding: 8px 4px; }
+    .wiz-row3 { grid-template-columns: 1fr; }
   }
   .wiz-steps {
     display: flex; align-items: center; gap: 0; padding: 10px 16px 0;
@@ -1729,23 +1748,90 @@
 
   .wiz-type-btns { display: flex; gap: 6px; flex-wrap: wrap; }
   .wiz-type-btn {
-    flex: 1; min-width: 80px; padding: 8px 6px; border-radius: 8px;
+    flex: 1; min-width: 80px; padding: 10px 6px; border-radius: 10px;
     border: 2px solid var(--border); background: var(--surface2);
-    color: var(--text-muted); font-size: 11px; font-weight: 600; cursor: pointer;
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    transition: all .15s;
+    color: var(--text-muted); font-size: 11px; font-weight: 700; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    transition: all .18s; box-shadow: 0 1px 3px rgba(0,0,0,.06);
   }
-  .wiz-type-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .wiz-type-btn.active { border-color: var(--accent); background: rgba(31,111,235,.12); color: var(--accent); }
-  .wiz-type-btn svg { width: 18px; height: 18px; }
+  .wiz-type-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+  /* Visitante = azul vibrante */
+  #wiz-tipo-visitante.active {
+    border-color: #1f6feb; background: rgba(31,111,235,.14);
+    color: #4d9eff; box-shadow: 0 4px 14px rgba(31,111,235,.25);
+  }
+  /* Prestador = âmbar/laranja vibrante */
+  #wiz-tipo-prestador.active {
+    border-color: #d97706; background: rgba(217,119,6,.14);
+    color: #f59e0b; box-shadow: 0 4px 14px rgba(217,119,6,.25);
+  }
+  /* Entrega = roxo/violeta vibrante */
+  #wiz-tipo-entrega.active {
+    border-color: #7c3aed; background: rgba(124,58,237,.13);
+    color: #a78bfa; box-shadow: 0 4px 14px rgba(124,58,237,.22);
+  }
+  .wiz-type-btn svg { width: 20px; height: 20px; }
 
-  .wiz-doc-type-chips { display: flex; gap: 5px; flex-wrap: wrap; }
-  .wiz-doc-chip {
-    padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700;
-    border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted);
-    cursor: pointer; transition: all .15s;
+  /* ── BOTÕES DE NAVEGAÇÃO DO WIZARD ─────────────────── */
+  .wiz-btn-avancar {
+    background: linear-gradient(135deg, #1f6feb, #0d4ea8) !important;
+    color: #fff !important; border-color: #1a5fc8 !important;
+    font-weight: 700 !important; letter-spacing: .3px;
+    padding: 8px 18px !important; border-radius: 8px !important;
+    box-shadow: 0 3px 10px rgba(31,111,235,.38) !important;
+    transition: all .18s !important;
   }
-  .wiz-doc-chip.active { background: rgba(31,111,235,.15); color: var(--accent); border-color: var(--accent); }
+  .wiz-btn-avancar:hover {
+    background: linear-gradient(135deg, #388bfd, #1f6feb) !important;
+    box-shadow: 0 5px 16px rgba(31,111,235,.52) !important;
+    transform: translateY(-1px);
+  }
+  .wiz-btn-confirmar {
+    background: linear-gradient(135deg, #2ea043, #1a7a2e) !important;
+    color: #fff !important; border-color: #26903b !important;
+    font-weight: 700 !important; padding: 8px 18px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 3px 10px rgba(46,160,67,.40) !important;
+    transition: all .18s !important;
+  }
+  .wiz-btn-confirmar:hover {
+    background: linear-gradient(135deg, #3fb950, #2ea043) !important;
+    box-shadow: 0 5px 16px rgba(46,160,67,.55) !important;
+    transform: translateY(-1px);
+  }
+  .wiz-btn-voltar {
+    background: var(--surface2) !important; color: var(--text) !important;
+    border: 1.5px solid var(--border) !important; border-radius: 8px !important;
+    font-weight: 600 !important; padding: 8px 14px !important;
+    transition: all .15s !important;
+  }
+  .wiz-btn-voltar:hover { background: var(--border) !important; }
+
+  /* ── SELECT DOCUMENTO (substitui chips) ──────────────── */
+  .wiz-doc-select {
+    width: 100%;
+    padding: 8px 32px 8px 12px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232d6a2d' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    transition: border-color .2s, box-shadow .2s;
+    margin-bottom: 2px;
+  }
+  .wiz-doc-select:focus {
+    border-color: #1f6feb;
+    box-shadow: 0 0 0 3px rgba(31,111,235,.18);
+  }
+  .wiz-doc-select option { font-weight: 600; }
 
   .wiz-foto-area {
     display: flex; align-items: flex-start; gap: 12px;
@@ -1784,12 +1870,7 @@
   .wiz-morador-name { font-size: 12px; font-weight: 700; color: var(--text); }
   .wiz-morador-meta { font-size: 10px; color: var(--text-muted); }
 
-  .wiz-footer {
-    display: flex; align-items: center; justify-content: space-between; padding: 10px 16px;
-    border-top: 1px solid var(--border); gap: 8px; background: var(--surface);
-    flex-shrink: 0;
-  }
-  .wiz-footer-info { font-size: 10px; color: var(--text-muted); flex: 1; }
+  /* wiz-footer: definido no bloco #mod-busca acima */
 
   .wiz-veiculo-row { display: flex; align-items: center; gap: 8px; }
   .wiz-add-veiculo { font-size: 11px; padding: 5px 8px; }
@@ -1960,6 +2041,89 @@
   }
   .busca-stats strong { color: var(--text); }
 
+  /* ══ MÓDULO MORADORES — CARD CENTRALIZADO ══════════════ */
+  #mod-moradores {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  #mod-moradores .mod-panel {
+    flex: none;
+    width: 980px;
+    max-width: 97vw;
+    max-height: 92vh;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 72px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.04);
+    animation: cardPop .22s ease;
+  }
+  @keyframes cardPop {
+    from { transform: scale(.96) translateY(10px); opacity: 0; }
+    to   { transform: scale(1)   translateY(0);    opacity: 1; }
+  }
+  /* Lista lateral compacta dentro do card */
+  #mod-moradores .mor-list-panel {
+    width: 260px;
+    min-width: 220px;
+  }
+  /* Form interno mais compacto → não precisa rolar a tela inteira */
+  #mod-moradores .detail-content {
+    padding: 14px 18px;
+    overflow-y: auto;
+  }
+  #mod-moradores .form-section          { margin-bottom: 13px; }
+  #mod-moradores .form-section-title    { padding-bottom: 5px; margin-bottom: 9px; }
+  #mod-moradores .photo-section         { margin-bottom: 12px; }
+  #mod-moradores .field textarea        { min-height: 48px; resize: none; }
+  #mod-moradores .form-grid             { gap: 10px; }
+  /* Botão Salvar — verde vibrante */
+  #mod-moradores .btn-primary {
+    background: linear-gradient(135deg, #2ea043, #1a7a2e);
+    color: #fff !important;
+    border-color: #26903b;
+    box-shadow: 0 3px 10px rgba(46,160,67,.35);
+    font-weight: 700;
+    padding: 8px 20px;
+  }
+  #mod-moradores .btn-primary:hover {
+    background: linear-gradient(135deg, #3fb950, #2ea043);
+    box-shadow: 0 5px 16px rgba(46,160,67,.50);
+    transform: translateY(-1px);
+  }
+  /* Botões toolbar vibrantes */
+  #mod-moradores .mod-toolbar .btn-secondary { border-radius: 7px; }
+  #mod-moradores .mod-toolbar .btn-danger    { border-radius: 7px; }
+  #mod-moradores .mod-toolbar .btn-amber     { border-radius: 7px; }
+
+  /* ── Responsivo: tablet ──────── */
+  @media (max-width: 900px) {
+    #mod-moradores .mod-panel { width: 100%; max-width: 100%; }
+  }
+  /* ── Responsivo: mobile ─────── */
+  @media (max-width: 700px) {
+    #mod-moradores { align-items: flex-end; flex-direction: column; }
+    #mod-moradores .mod-panel {
+      width: 100%; max-width: 100%;
+      max-height: 95vh;
+      border-radius: 20px 20px 0 0;
+    }
+    #mod-moradores .mod-body          { flex-direction: column; }
+    #mod-moradores .mor-list-panel    {
+      width: 100%; min-width: unset;
+      max-height: 190px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    #mod-moradores .detail-content    { padding: 10px 12px; }
+    #mod-moradores .form-grid         { grid-template-columns: 1fr; }
+    #mod-moradores .form-grid.cols-3  { grid-template-columns: 1fr 1fr; }
+    #mod-moradores .mod-toolbar       { gap: 4px; padding: 8px 10px; flex-wrap: wrap; }
+    #mod-moradores .filter-chips      { display: none; }
+    #mod-moradores .search-input      { width: 140px; }
+  }
+
   /* ══ MÓDULO VISITANTES ════════════════════════════════ */
   .visit-list-panel { width:340px;min-width:260px;border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:var(--surface); }
   .visit-list-header { padding:10px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--text-muted);flex-shrink:0; }
@@ -2105,6 +2269,170 @@
   .rec-stat-pill.aut { background:rgba(46,160,67,.15);color:var(--green-glow);border:1px solid var(--green-dim); }
   .rec-stat-pill.exp { background:rgba(218,54,51,.12);color:var(--red);border:1px solid rgba(218,54,51,.3); }
   .rec-stat-pill.pen { background:rgba(210,153,34,.12);color:var(--amber);border:1px solid rgba(210,153,34,.3); }
+
+  /* ══ MÓDULO UNIDADES — CARD CENTRALIZADO ═══════════════ */
+  #mod-unidades {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  #mod-unidades .mod-panel {
+    flex: none;
+    width: 980px;
+    max-width: 97vw;
+    max-height: 92vh;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 72px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.04);
+    animation: cardPop .22s ease;
+  }
+  /* Lista lateral compacta */
+  #mod-unidades .unid-list-panel {
+    width: 240px;
+    min-width: 200px;
+  }
+  /* Conteúdo interno com scroll próprio */
+  #mod-unidades .detail-content,
+  #mod-unidades [id$="-detail-content"] {
+    padding: 14px 18px;
+    overflow-y: auto;
+  }
+  #mod-unidades .form-section       { margin-bottom: 13px; }
+  #mod-unidades .form-section-title { padding-bottom: 5px; margin-bottom: 9px; }
+  #mod-unidades .form-grid          { gap: 10px; }
+  #mod-unidades .field textarea     { min-height: 48px; resize: none; }
+  /* Botão Salvar vibrante */
+  #mod-unidades .btn-primary {
+    background: linear-gradient(135deg, #2ea043, #1a7a2e);
+    color: #fff !important;
+    border-color: #26903b;
+    box-shadow: 0 3px 10px rgba(46,160,67,.35);
+    font-weight: 700;
+    padding: 8px 20px;
+  }
+  #mod-unidades .btn-primary:hover {
+    background: linear-gradient(135deg, #3fb950, #2ea043);
+    box-shadow: 0 5px 16px rgba(46,160,67,.50);
+    transform: translateY(-1px);
+  }
+  /* Responsivo tablet */
+  @media (max-width: 900px) {
+    #mod-unidades .mod-panel { width: 100%; max-width: 100%; }
+  }
+  /* Responsivo mobile */
+  @media (max-width: 700px) {
+    #mod-unidades { align-items: flex-end; flex-direction: column; }
+    #mod-unidades .mod-panel {
+      width: 100%; max-width: 100%;
+      max-height: 95vh;
+      border-radius: 20px 20px 0 0;
+    }
+    #mod-unidades .mod-body       { flex-direction: column; }
+    #mod-unidades .unid-list-panel {
+      width: 100%; min-width: unset;
+      max-height: 180px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    #mod-unidades .detail-content,
+    #mod-unidades [id$="-detail-content"] { padding: 10px 12px; }
+    #mod-unidades .form-grid              { grid-template-columns: 1fr; }
+    #mod-unidades .form-grid.cols-3       { grid-template-columns: 1fr 1fr; }
+    #mod-unidades .mod-toolbar            { gap: 4px; padding: 8px 10px; flex-wrap: wrap; }
+    #mod-unidades .filter-chips           { display: none; }
+    #mod-unidades .search-input           { width: 140px; }
+  }
+
+  /* ══ MÓDULO VISITANTES — CARD CENTRALIZADO ══════════════ */
+  #mod-visitantes {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  #mod-visitantes .mod-panel {
+    flex: none;
+    width: 980px;
+    max-width: 97vw;
+    max-height: 92vh;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 72px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.04);
+    animation: cardPop .22s ease;
+  }
+  /* Lista lateral compacta */
+  #mod-visitantes .visit-list-panel {
+    width: 260px;
+    min-width: 220px;
+  }
+  /* Conteúdo com scroll próprio */
+  #mod-visitantes .detail-content,
+  #mod-visitantes [id$="-detail-content"] {
+    padding: 14px 18px;
+    overflow-y: auto;
+  }
+  #mod-visitantes .form-section       { margin-bottom: 13px; }
+  #mod-visitantes .form-section-title { padding-bottom: 5px; margin-bottom: 9px; }
+  #mod-visitantes .form-grid          { gap: 10px; }
+  /* Painel recorrentes também cresce dentro do card */
+  #mod-visitantes #visit-rec-panel    { flex: 1; overflow: hidden; }
+  /* Botão Saída — azul vibrante */
+  #mod-visitantes .btn-accent {
+    background: linear-gradient(135deg, #1f6feb, #0d4ea8);
+    color: #fff !important;
+    border-color: #1a5fc8;
+    box-shadow: 0 3px 10px rgba(31,111,235,.35);
+    font-weight: 700;
+  }
+  #mod-visitantes .btn-accent:hover {
+    background: linear-gradient(135deg, #388bfd, #1f6feb);
+    box-shadow: 0 5px 16px rgba(31,111,235,.50);
+    transform: translateY(-1px);
+  }
+  /* Botão Novo Visitante vibrante */
+  #mod-visitantes .btn-primary {
+    background: linear-gradient(135deg, #2ea043, #1a7a2e);
+    color: #fff !important;
+    border-color: #26903b;
+    box-shadow: 0 3px 10px rgba(46,160,67,.35);
+    font-weight: 700;
+  }
+  #mod-visitantes .btn-primary:hover {
+    background: linear-gradient(135deg, #3fb950, #2ea043);
+    box-shadow: 0 5px 16px rgba(46,160,67,.50);
+    transform: translateY(-1px);
+  }
+  /* Responsivo tablet */
+  @media (max-width: 900px) {
+    #mod-visitantes .mod-panel { width: 100%; max-width: 100%; }
+  }
+  /* Responsivo mobile */
+  @media (max-width: 700px) {
+    #mod-visitantes { align-items: flex-end; flex-direction: column; }
+    #mod-visitantes .mod-panel {
+      width: 100%; max-width: 100%;
+      max-height: 95vh;
+      border-radius: 20px 20px 0 0;
+    }
+    #mod-visitantes .mod-body        { flex-direction: column; }
+    #mod-visitantes .visit-list-panel {
+      width: 100%; min-width: unset;
+      max-height: 190px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    #mod-visitantes .detail-content,
+    #mod-visitantes [id$="-detail-content"] { padding: 10px 12px; }
+    #mod-visitantes .form-grid               { grid-template-columns: 1fr; }
+    #mod-visitantes .form-grid.cols-3        { grid-template-columns: 1fr 1fr; }
+    #mod-visitantes .mod-toolbar             { gap: 4px; padding: 8px 10px; flex-wrap: wrap; }
+    #mod-visitantes .filter-chips            { display: none; }
+    #mod-visitantes .search-input            { width: 140px; }
+    #mod-visitantes .rec-grid                { grid-template-columns: 1fr; padding: 10px; }
+  }
 
   /* ══ MÓDULO RELATÓRIOS ═══════════════════════════════ */
   .rel-tab-bar { display:flex;gap:2px;padding:8px 16px 0;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0; }
@@ -2623,6 +2951,206 @@
   .chv-info-row .lbl { font-weight:500; color:var(--text); }
   .chv-info-row .val { font-weight:700; color:var(--accent); }
   @media(max-width:768px){ .chv-list-panel{width:100%;border-right:none;} .chv-layout{flex-direction:column;} }
+
+  /* ════════════════════════════════════════════════════════
+     CARDS CENTRALIZADOS — TODOS OS MÓDULOS RESTANTES
+     Padrão: 980px (dois painéis) · 660px (conteúdo simples)
+     ════════════════════════════════════════════════════════ */
+
+  /* ── Mixin reutilizável (aplicado via seletor múltiplo) ─ */
+  #mod-recorrente, #mod-reservas, #mod-relatorios,
+  #mod-dispositivos, #mod-entregas, #mod-recados, #mod-chaves {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  #mod-recorrente .mod-panel,
+  #mod-reservas   .mod-panel,
+  #mod-relatorios .mod-panel,
+  #mod-dispositivos .mod-panel,
+  #mod-entregas   .mod-panel,
+  #mod-recados    .mod-panel,
+  #mod-chaves     .mod-panel {
+    flex: none;
+    width: 980px;
+    max-width: 97vw;
+    max-height: 92vh;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 72px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.04);
+    animation: cardPop .22s ease;
+  }
+  /* Módulos simples (sem painel duplo) */
+  #mod-configurar, #mod-backup, #mod-utils,
+  #mod-ferramentas, #mod-ajuda {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  #mod-configurar .mod-panel,
+  #mod-backup     .mod-panel,
+  #mod-utils      .mod-panel,
+  #mod-ferramentas .mod-panel,
+  #mod-ajuda      .mod-panel {
+    flex: none;
+    width: 660px;
+    max-width: 97vw;
+    max-height: 92vh;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 24px 72px rgba(0,0,0,.52), 0 0 0 1px rgba(255,255,255,.04);
+    animation: cardPop .22s ease;
+  }
+  #mod-configurar .mod-panel { width: 880px; }
+
+  /* ── Botão primário vibrante em todos os módulos card ─── */
+  #mod-recorrente .btn-primary, #mod-reservas .btn-primary,
+  #mod-relatorios .btn-primary, #mod-dispositivos .btn-primary,
+  #mod-entregas .btn-primary,   #mod-recados .btn-primary,
+  #mod-chaves .btn-primary,     #mod-configurar .btn-primary,
+  #mod-backup .btn-primary {
+    background: linear-gradient(135deg, #2ea043, #1a7a2e);
+    color: #fff !important;
+    border-color: #26903b;
+    box-shadow: 0 3px 10px rgba(46,160,67,.35);
+    font-weight: 700;
+  }
+  #mod-recorrente .btn-primary:hover, #mod-reservas .btn-primary:hover,
+  #mod-relatorios .btn-primary:hover, #mod-dispositivos .btn-primary:hover,
+  #mod-entregas .btn-primary:hover,   #mod-recados .btn-primary:hover,
+  #mod-chaves .btn-primary:hover,     #mod-configurar .btn-primary:hover,
+  #mod-backup .btn-primary:hover {
+    background: linear-gradient(135deg, #3fb950, #2ea043);
+    box-shadow: 0 5px 16px rgba(46,160,67,.50);
+    transform: translateY(-1px);
+  }
+  /* Botão accent (PDF, exportar) — azul vibrante */
+  #mod-relatorios .btn-accent, #mod-entregas .btn-accent,
+  #mod-recados .btn-accent,    #mod-chaves .btn-accent {
+    background: linear-gradient(135deg, #1f6feb, #0d4ea8);
+    color: #fff !important;
+    border-color: #1a5fc8;
+    box-shadow: 0 3px 10px rgba(31,111,235,.35);
+    font-weight: 700;
+  }
+  #mod-relatorios .btn-accent:hover, #mod-entregas .btn-accent:hover,
+  #mod-recados .btn-accent:hover,    #mod-chaves .btn-accent:hover {
+    background: linear-gradient(135deg, #388bfd, #1f6feb);
+    box-shadow: 0 5px 16px rgba(31,111,235,.50);
+    transform: translateY(-1px);
+  }
+
+  /* ── Listas laterais compactas ───────────────────────── */
+  #mod-dispositivos .disp-list-panel { width: 250px; min-width: 200px; }
+  #mod-entregas     .entr-list-panel { width: 260px; min-width: 210px; }
+  #mod-recados      .rcd-list-panel  { width: 260px; min-width: 210px; }
+  #mod-chaves       .chv-list-panel  { width: 250px; min-width: 200px; max-width: 280px; }
+  #mod-reservas     .res-left        { width: 250px; min-width: 200px; }
+
+  /* Conteúdo com scroll interno */
+  #mod-dispositivos .detail-content,
+  #mod-chaves .chv-detail-content,
+  #mod-recados .rcd-detail-content,
+  #mod-entregas .entr-detail,
+  #mod-relatorios .rel-body,
+  #mod-reservas .res-day-list       { overflow-y: auto; }
+
+  /* Formulários mais compactos dentro dos cards */
+  #mod-entregas .form-section,
+  #mod-recados  .form-section,
+  #mod-chaves   .form-section,
+  #mod-dispositivos .form-section { margin-bottom: 13px; }
+
+  /* ── Responsivo tablet (≤ 900px) ────────────────────── */
+  @media (max-width: 900px) {
+    #mod-recorrente .mod-panel, #mod-reservas .mod-panel,
+    #mod-relatorios .mod-panel, #mod-dispositivos .mod-panel,
+    #mod-entregas .mod-panel,   #mod-recados .mod-panel,
+    #mod-chaves .mod-panel      { width: 100%; max-width: 100%; }
+    #mod-configurar .mod-panel, #mod-backup .mod-panel,
+    #mod-utils .mod-panel,      #mod-ferramentas .mod-panel,
+    #mod-ajuda .mod-panel       { width: 100%; max-width: 94vw; }
+  }
+
+  /* ── Responsivo mobile (≤ 700px) — bottom-sheet ─────── */
+  @media (max-width: 700px) {
+    /* Todos sobem como bottom-sheet */
+    #mod-recorrente, #mod-reservas, #mod-relatorios,
+    #mod-dispositivos, #mod-entregas, #mod-recados, #mod-chaves,
+    #mod-configurar, #mod-backup, #mod-utils,
+    #mod-ferramentas, #mod-ajuda {
+      align-items: flex-end;
+      flex-direction: column;
+    }
+    #mod-recorrente .mod-panel, #mod-reservas .mod-panel,
+    #mod-relatorios .mod-panel, #mod-dispositivos .mod-panel,
+    #mod-entregas .mod-panel,   #mod-recados .mod-panel,
+    #mod-chaves .mod-panel,     #mod-configurar .mod-panel,
+    #mod-backup .mod-panel,     #mod-utils .mod-panel,
+    #mod-ferramentas .mod-panel, #mod-ajuda .mod-panel {
+      width: 100%; max-width: 100%;
+      max-height: 95vh;
+      border-radius: 20px 20px 0 0;
+    }
+    /* Painéis duplos empilham */
+    #mod-dispositivos .mod-body,
+    #mod-entregas .entr-layout,
+    #mod-recados  .rcd-layout,
+    #mod-chaves   .chv-layout,
+    #mod-reservas .res-layout   { flex-direction: column; }
+    /* Listas ficam no topo com altura limitada */
+    #mod-dispositivos .disp-list-panel,
+    #mod-entregas .entr-list-panel,
+    #mod-recados  .rcd-list-panel,
+    #mod-chaves   .chv-list-panel {
+      width: 100%; min-width: unset; max-width: unset;
+      max-height: 180px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    #mod-reservas .res-left {
+      width: 100%; min-width: unset;
+      max-height: 200px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    /* Grid de recorrentes colapsa para 1 col */
+    #mod-recorrente .rec-grid { grid-template-columns: 1fr; padding: 10px; }
+    /* Filtros somem na toolbar */
+    #mod-recorrente .filter-chips,
+    #mod-dispositivos .filter-chips,
+    #mod-entregas .filter-chips,
+    #mod-recados  .filter-chips,
+    #mod-chaves   .filter-chips  { display: none; }
+    /* Search mais estreito */
+    #mod-recorrente .search-input,
+    #mod-dispositivos .search-input,
+    #mod-entregas .search-input,
+    #mod-recados  .search-input,
+    #mod-chaves   .search-input  { width: 140px; }
+    /* Relatórios: filtros em coluna */
+    #mod-relatorios .rel-filters { flex-direction: column; align-items: flex-start; gap: 6px; }
+    #mod-relatorios .rel-actions { margin-left: 0; }
+    /* Configurar: grid em 1 coluna */
+    #mod-configurar .form-grid { grid-template-columns: 1fr; }
+
+  /* Abas Receptores e Perfis de Acesso */
+  .rpa-tab {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 14px; font-size: 12px; font-weight: 600;
+    border: none; background: transparent; cursor: pointer;
+    color: var(--text2); border-bottom: 3px solid transparent;
+    transition: all .15s; white-space: nowrap;
+  }
+  .rpa-tab:hover { color: var(--green); background: rgba(45,106,45,.06); }
+  .rpa-tab.active { color: var(--green); border-bottom-color: var(--green); background: rgba(45,106,45,.08); }
+  .rpa-pane { animation: fadeIn .15s ease; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+  }
 
 </style>
 </head>
@@ -3283,14 +3811,14 @@
 
         <div class="wiz-field">
           <label>Buscar por documento</label>
-          <div class="wiz-doc-type-chips" style="margin-bottom:8px">
-            <button class="wiz-doc-chip active" onclick="buscaWiz.setDocTipo('CPF',this)">CPF</button>
-            <button class="wiz-doc-chip" onclick="buscaWiz.setDocTipo('RG',this)">RG</button>
-            <button class="wiz-doc-chip" onclick="buscaWiz.setDocTipo('Email',this)">Email</button>
-            <button class="wiz-doc-chip" onclick="buscaWiz.setDocTipo('Placa',this)">Placa</button>
-            <button class="wiz-doc-chip" onclick="buscaWiz.setDocTipo('CNPJ',this)">CNPJ</button>
-          </div>
-          <div style="display:flex;gap:8px">
+          <select class="wiz-doc-select" id="wiz-doc-select" onchange="buscaWiz.setDocTipo(this.value)">
+            <option value="CPF">🪪 CPF</option>
+            <option value="RG">📋 RG</option>
+            <option value="Email">✉️ E-mail</option>
+            <option value="Placa">🚗 Placa</option>
+            <option value="CNPJ">🏢 CNPJ</option>
+          </select>
+          <div style="display:flex;gap:8px;margin-top:4px">
             <input class="wiz-input" type="text" id="wiz-doc-input"
               placeholder="Digite para buscar no cadastro..."
               oninput="buscaWiz.buscarDoc()"
@@ -3443,13 +3971,13 @@
     <!-- Footer com botões de navegação -->
     <div class="wiz-footer">
       <span class="wiz-footer-info" id="wiz-footer-info">Preencha os campos de identificação</span>
-      <button class="btn btn-secondary" id="wiz-btn-voltar" onclick="buscaWiz.voltar()" style="display:none">
+      <button class="btn wiz-btn-voltar" id="wiz-btn-voltar" onclick="buscaWiz.voltar()" style="display:none">
         ← Voltar
       </button>
-      <button class="btn btn-primary" id="wiz-btn-avancar" onclick="buscaWiz.avancar()">
+      <button class="btn wiz-btn-avancar" id="wiz-btn-avancar" onclick="buscaWiz.avancar()">
         Avançar →
       </button>
-      <button class="btn btn-primary" id="wiz-btn-confirmar" onclick="buscaWiz.confirmar()" style="display:none;background:var(--green-glow)">
+      <button class="btn wiz-btn-confirmar" id="wiz-btn-confirmar" onclick="buscaWiz.confirmar()" style="display:none">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
         Autorizar Entrada
       </button>
@@ -4310,52 +4838,348 @@
 </div>
 
 <!-- ══ MÓDULO CONFIGURAR ════════════════════════════════ -->
+<!-- ══ MÓDULO CONFIGURAR — Receptores e Perfis de Acesso ════════════ -->
 <div class="mod-overlay" id="mod-configurar">
-  <div class="mod-panel">
+  <div class="mod-panel" style="width:860px;max-width:98vw">
     <div class="mod-header">
       <div class="mod-header-left">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="7" cy="10" r="1.5"/><path d="M11 10h6M11 7h6M11 13h4"/></svg>
         <div>
-          <div class="mod-title">Configurações</div>
-          <div class="mod-subtitle">Parâmetros gerais do sistema</div>
+          <div class="mod-title">Receptores e Perfis de Acesso</div>
+          <div class="mod-subtitle">Configurar receptores, perfis de acesso e dispensadores de cartão</div>
         </div>
       </div>
       <button class="mod-close" onclick="closeModule('mod-configurar')">✕</button>
     </div>
-    <div style="padding:24px;overflow-y:auto;flex:1">
-      <div class="form-section">
-        <div class="form-section-title">🏢 Dados do Condomínio</div>
-        <div class="form-grid">
-          <div class="field form-full"><label>Nome do Condomínio</label><input type="text" id="cfg-nome-cond" value="" placeholder="Nome do condomínio"></div>
-          <div class="field"><label>CNPJ</label><input type="text" id="cfg-cnpj" placeholder="00.000.000/0001-00"></div>
-          <div class="field"><label>Endereço</label><input type="text" id="cfg-end" placeholder="Rua, número, bairro"></div>
-          <div class="field"><label>Cidade / UF</label><input type="text" id="cfg-cidade" placeholder="Goiânia / GO"></div>
-          <div class="field"><label>Telefone da Administração</label><input type="text" id="cfg-tel-adm" placeholder="(00) 0000-0000"></div>
-          <div class="field"><label>E-mail da Administração</label><input type="text" id="cfg-email-adm" placeholder="adm@condominio.com.br"></div>
-        </div>
-      </div>
-      <div class="form-section">
-        <div class="form-section-title">⏱ Portaria</div>
-        <div class="form-grid">
-          <div class="field"><label>Porteiro em Turno</label><input type="text" id="cfg-porteiro" value="Porteiro" placeholder="Nome do porteiro"></div>
-          <div class="field"><label>Turno Atual</label><select id="cfg-turno"><option>Manhã (06h–14h)</option><option>Tarde (14h–22h)</option><option>Noite (22h–06h)</option><option>Integral (06h–18h)</option></select></div>
-        </div>
-      </div>
-      <div class="form-section">
-        <div class="form-section-title">🔔 Alertas e Notificações</div>
-        <div class="form-grid">
-          <div class="field"><label>Alerta de Visitante (minutos máx)</label><input type="number" id="cfg-alert-visit" value="60" min="5" max="480"></div>
-          <div class="field"><label>Alerta de Chave Não Devolvida (horas)</label><input type="number" id="cfg-alert-chave" value="12" min="1" max="72"></div>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px;padding-bottom:20px">
-        <button class="btn btn-primary" onclick="modConfigurar.salvar()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v14a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          Salvar Configurações
-        </button>
-        <button class="btn btn-secondary" onclick="closeModule('mod-configurar')">Cancelar</button>
-      </div>
+
+    <!-- ABAS -->
+    <div style="display:flex;gap:0;border-bottom:2px solid var(--border);background:var(--surface2);flex-shrink:0">
+      <button class="rpa-tab active" onclick="rpaTab('equip')" id="rpa-tab-equip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M6 14h.01M10 14h.01"/><circle cx="17" cy="12" r="2"/></svg>
+        Equipamento
+      </button>
+      <button class="rpa-tab" onclick="rpaTab('leit')" id="rpa-tab-leit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Leitores
+      </button>
+      <button class="rpa-tab" onclick="rpaTab('perfil')" id="rpa-tab-perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Perfis de Acesso
+      </button>
+      <button class="rpa-tab" onclick="rpaTab('disp')" id="rpa-tab-disp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M9 12h6M12 9v6"/></svg>
+        Dispensador de Cartão
+      </button>
+      <button class="rpa-tab" onclick="rpaTab('impr')" id="rpa-tab-impr">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Impressoras
+      </button>
     </div>
+
+    <!-- CONTEÚDO DAS ABAS -->
+    <div style="flex:1;overflow-y:auto;padding:20px 24px">
+
+      <!-- ABA EQUIPAMENTO -->
+      <div class="rpa-pane" id="rpa-pane-equip">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <label style="font-size:13px;font-weight:600;color:var(--text2)">Tipo do Equipamento</label>
+          <select id="rpa-tipo-equip" style="flex:1;max-width:320px;padding:7px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;background:var(--surface);color:var(--text)" onchange="rpaEquip.filtrar()">
+            <option value="">— Selecione —</option>
+            <option>HK FACIAL 606</option>
+            <option>HK LPR</option>
+            <option>Facial HikVision</option>
+            <option>MIP 1000 IP</option>
+            <option>FACIAL INTELBRAS</option>
+            <option>BIO-T BIOMETRIA</option>
+            <option>LPR INTELBRAS</option>
+            <option>CENTRAL DE INCENDIO</option>
+            <option>FACIAL XPE INTELBRAS</option>
+            <option>CONTROLADORA NICE</option>
+          </select>
+        </div>
+
+        <!-- Equipamentos online -->
+        <div style="border:1.5px solid var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden">
+          <div style="background:var(--surface2);padding:8px 14px;font-size:12px;font-weight:700;color:var(--text2);border-bottom:1px solid var(--border)">Equipamentos online</div>
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="background:var(--surface2)">
+                <th style="padding:8px 14px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Tipo do Equipamento</th>
+                <th style="padding:8px 14px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">IP</th>
+                <th style="padding:8px 14px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Porta</th>
+              </tr>
+            </thead>
+            <tbody id="rpa-online-tbody" style="min-height:60px">
+              <tr><td colspan="3" style="padding:20px;text-align:center;color:var(--text3);font-size:12px">Nenhum equipamento online</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Barra de ações -->
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <button class="btn btn-primary" style="padding:6px 14px;font-size:12px" onclick="rpaEquip.novo()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Novo
+          </button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px" onclick="rpaEquip.editar()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> Editar
+          </button>
+          <span style="flex:1"></span>
+          <span style="font-size:12px;color:var(--text3)">Sub Equips</span>
+          <button class="btn btn-secondary" style="padding:5px 10px;font-size:12px" onclick="rpaEquip.subEquips()" title="Sub Equipamentos">⚙</button>
+          <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2);cursor:pointer">
+            <input type="checkbox" id="rpa-validar-bio" style="accent-color:var(--green)"> Validar Biometria no software
+          </label>
+          <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2);cursor:pointer">
+            <input type="checkbox" id="rpa-conectar" style="accent-color:var(--green)"> Conectar
+          </label>
+          <span style="font-size:12px;color:var(--text3)">Interface</span>
+          <select id="rpa-interface" style="padding:5px 8px;border:1.5px solid var(--border);border-radius:6px;font-size:12px;background:var(--surface);color:var(--text)">
+            <option value="">—</option>
+            <option>TCP/IP</option>
+            <option>Serial</option>
+            <option>USB</option>
+          </select>
+          <span style="font-size:12px;color:var(--text3)">User</span>
+          <input type="text" id="rpa-user" placeholder="admin" style="width:100px;padding:5px 8px;border:1.5px solid var(--border);border-radius:6px;font-size:12px">
+        </div>
+
+        <!-- Campos do equipamento -->
+        <div style="display:grid;grid-template-columns:1fr auto auto auto auto auto;gap:8px;align-items:end;margin-bottom:12px;flex-wrap:wrap">
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Descrição</label>
+            <input type="text" id="rpa-equip-desc" placeholder="Ex: FACIAL ENTRADA PEDESTRES" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">IP</label>
+            <input type="text" id="rpa-equip-ip" placeholder="192.168.1.75" style="width:130px;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">PORTA</label>
+            <input type="text" id="rpa-equip-porta" placeholder="80" style="width:70px;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Identificação</label>
+            <input type="number" id="rpa-equip-id" placeholder="1" min="1" style="width:80px;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Senha</label>
+            <input type="password" id="rpa-equip-senha" placeholder="••••••••" style="width:120px;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <button class="btn btn-primary" style="padding:7px 14px;font-size:12px;align-self:end" onclick="rpaEquip.salvar()">Salvar</button>
+        </div>
+
+        <!-- Tabela de equipamentos -->
+        <div style="border:1.5px solid var(--border);border-radius:10px;overflow:hidden">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="background:var(--surface2)">
+                <th style="padding:8px 10px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border);width:80px">Identificação</th>
+                <th style="padding:8px 10px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Descrição</th>
+                <th style="padding:8px 10px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">IP</th>
+                <th style="padding:8px 10px;text-align:center;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border);width:70px">PORTA</th>
+                <th style="padding:8px 10px;text-align:center;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border);width:80px">CONECTAR</th>
+              </tr>
+            </thead>
+            <tbody id="rpa-equip-tbody">
+              <tr id="rpa-equip-empty"><td colspan="5" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhum equipamento cadastrado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABA LEITORES -->
+      <div class="rpa-pane" id="rpa-pane-leit" style="display:none">
+        <div style="display:flex;gap:8px;margin-bottom:16px">
+          <button class="btn btn-primary" style="padding:6px 14px;font-size:12px" onclick="rpaLeit.novo()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Novo Leitor
+          </button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px" onclick="rpaLeit.editar()">Editar</button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;color:#c0392b" onclick="rpaLeit.excluir()">Excluir</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:14px">
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Descrição</label>
+            <input type="text" id="rpa-leit-desc" placeholder="Ex: Leitor entrada" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Equipamento</label>
+            <select id="rpa-leit-equip" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;background:var(--surface)">
+              <option value="">— Selecione —</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Sentido</label>
+            <select id="rpa-leit-sentido" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;background:var(--surface)">
+              <option>Entrada</option>
+              <option>Saída</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Tipo</label>
+            <select id="rpa-leit-tipo" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;background:var(--surface)">
+              <option>Facial</option>
+              <option>Cartão</option>
+              <option>Biometria</option>
+              <option>QR Code</option>
+              <option>LPR</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="padding:7px 18px;font-size:12px;margin-bottom:14px" onclick="rpaLeit.salvar()">Salvar Leitor</button>
+        <div style="border:1.5px solid var(--border);border-radius:10px;overflow:hidden">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="background:var(--surface2)">
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">#</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Descrição</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Equipamento</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Sentido</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Tipo</th>
+              </tr>
+            </thead>
+            <tbody id="rpa-leit-tbody">
+              <tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhum leitor cadastrado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABA PERFIS DE ACESSO -->
+      <div class="rpa-pane" id="rpa-pane-perfil" style="display:none">
+        <div style="display:flex;gap:8px;margin-bottom:16px">
+          <button class="btn btn-primary" style="padding:6px 14px;font-size:12px" onclick="rpaPerfil.novo()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Novo Perfil
+          </button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px" onclick="rpaPerfil.editar()">Editar</button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;color:#c0392b" onclick="rpaPerfil.excluir()">Excluir</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Nome do Perfil</label>
+            <input type="text" id="rpa-perfil-nome" placeholder="Ex: Moradores, Visitantes, Funcionários" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Tipo de Acesso</label>
+            <select id="rpa-perfil-tipo" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;background:var(--surface)">
+              <option>Liberado</option>
+              <option>Restrito</option>
+              <option>Visitante</option>
+              <option>Temporário</option>
+            </select>
+          </div>
+          <div class="form-full" style="grid-column:1/-1">
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Leitores vinculados</label>
+            <div id="rpa-perfil-leitores-check" style="display:flex;flex-wrap:wrap;gap:10px;padding:10px;border:1.5px solid var(--border);border-radius:8px;min-height:42px;background:var(--surface2)">
+              <span style="color:var(--text3);font-size:12px">Cadastre leitores na aba Leitores primeiro</span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="padding:7px 18px;font-size:12px;margin-bottom:14px" onclick="rpaPerfil.salvar()">Salvar Perfil</button>
+        <div style="border:1.5px solid var(--border);border-radius:10px;overflow:hidden">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="background:var(--surface2)">
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">#</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Nome do Perfil</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Tipo</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Leitores</th>
+              </tr>
+            </thead>
+            <tbody id="rpa-perfil-tbody">
+              <tr><td colspan="4" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhum perfil cadastrado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABA DISPENSADOR DE CARTÃO -->
+      <div class="rpa-pane" id="rpa-pane-disp" style="display:none">
+        <div style="display:flex;gap:8px;margin-bottom:16px">
+          <button class="btn btn-primary" style="padding:6px 14px;font-size:12px" onclick="rpaDispCart.novo()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Novo
+          </button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px" onclick="rpaDispCart.editar()">Editar</button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;color:#c0392b" onclick="rpaDispCart.excluir()">Excluir</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Descrição</label>
+            <input type="text" id="rpa-dc-desc" placeholder="Ex: Dispensador entrada" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">IP</label>
+            <input type="text" id="rpa-dc-ip" placeholder="192.168.1.x" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Porta</label>
+            <input type="text" id="rpa-dc-porta" placeholder="8080" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+        </div>
+        <button class="btn btn-primary" style="padding:7px 18px;font-size:12px;margin-bottom:14px" onclick="rpaDispCart.salvar()">Salvar</button>
+        <div style="border:1.5px solid var(--border);border-radius:10px;overflow:hidden">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="background:var(--surface2)">
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">#</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Descrição</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">IP</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Porta</th>
+              </tr>
+            </thead>
+            <tbody id="rpa-dc-tbody">
+              <tr><td colspan="4" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhum dispensador cadastrado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABA IMPRESSORAS -->
+      <div class="rpa-pane" id="rpa-pane-impr" style="display:none">
+        <div style="display:flex;gap:8px;margin-bottom:16px">
+          <button class="btn btn-primary" style="padding:6px 14px;font-size:12px" onclick="rpaImpr.novo()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Nova
+          </button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px" onclick="rpaImpr.editar()">Editar</button>
+          <button class="btn btn-secondary" style="padding:6px 14px;font-size:12px;color:#c0392b" onclick="rpaImpr.excluir()">Excluir</button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:14px">
+          <div style="grid-column:1/3">
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Descrição / Nome</label>
+            <input type="text" id="rpa-impr-desc" placeholder="Ex: Impressora recepção" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">Tipo</label>
+            <select id="rpa-impr-tipo" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;background:var(--surface)">
+              <option>Cartão PVC</option>
+              <option>Térmica</option>
+              <option>Jato de Tinta</option>
+              <option>Laser</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--text3);display:block;margin-bottom:3px">IP</label>
+            <input type="text" id="rpa-impr-ip" placeholder="192.168.1.x" style="width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px">
+          </div>
+        </div>
+        <button class="btn btn-primary" style="padding:7px 18px;font-size:12px;margin-bottom:14px" onclick="rpaImpr.salvar()">Salvar</button>
+        <div style="border:1.5px solid var(--border);border-radius:10px;overflow:hidden">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="background:var(--surface2)">
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">#</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Descrição</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">Tipo</th>
+                <th style="padding:8px 12px;text-align:left;color:var(--text2);font-weight:600;border-bottom:1px solid var(--border)">IP</th>
+              </tr>
+            </thead>
+            <tbody id="rpa-impr-tbody">
+              <tr><td colspan="4" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhuma impressora cadastrada</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- fim scroll -->
   </div>
 </div>
 
@@ -4673,38 +5497,281 @@
     }
   }
 
-  // ── Módulo Configurar
-  const modConfigurar = {
-    carregar() {
-      const cfg = JSON.parse(localStorage.getItem('sys_config') || '{}');
-      const s = id => document.getElementById(id);
-      if (s('cfg-nome-cond')) s('cfg-nome-cond').value = cfg.nomeCond    || '';
-      if (s('cfg-cnpj'))      s('cfg-cnpj').value      = cfg.cnpj        || '';
-      if (s('cfg-end'))       s('cfg-end').value        = cfg.endereco    || '';
-      if (s('cfg-cidade'))    s('cfg-cidade').value     = cfg.cidade      || '';
-      if (s('cfg-tel-adm'))   s('cfg-tel-adm').value   = cfg.telAdm      || '';
-      if (s('cfg-email-adm')) s('cfg-email-adm').value = cfg.emailAdm    || '';
-      if (s('cfg-porteiro'))  s('cfg-porteiro').value  = cfg.porteiro    || 'Porteiro';
-      if (s('cfg-alert-visit')) s('cfg-alert-visit').value = cfg.alertVisit || 60;
-      if (s('cfg-alert-chave')) s('cfg-alert-chave').value = cfg.alertChave || 12;
+  // ── Módulo Configurar — Receptores e Perfis de Acesso
+  const modConfigurar = { carregar() { rpaEquip.renderizar(); rpaLeit.renderizar(); rpaPerfil.renderizar(); rpaDispCart.renderizar(); rpaImpr.renderizar(); } };
+
+  // Chaves de storage
+  const RPA_KEYS = { equip:'rpa_equip', leit:'rpa_leit', perfil:'rpa_perfil', dc:'rpa_dc', impr:'rpa_impr' };
+  const rpaLoad  = k => JSON.parse(localStorage.getItem(k) || '[]');
+  const rpaSave  = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+  let rpaEquipSel = null, rpaLeitSel = null, rpaPerfilSel = null, rpaDcSel = null, rpaImprSel = null;
+
+  // ── Troca de aba
+  function rpaTab(id) {
+    document.querySelectorAll('.rpa-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.rpa-pane').forEach(p => p.style.display = 'none');
+    document.getElementById('rpa-tab-' + id).classList.add('active');
+    document.getElementById('rpa-pane-' + id).style.display = 'block';
+    if (id === 'leit')   rpaLeit.popularEquipSelect();
+    if (id === 'perfil') rpaPerfil.popularLeitores();
+  }
+
+  // ── ABA EQUIPAMENTO
+  const rpaEquip = {
+    renderizar() {
+      const lista = rpaLoad(RPA_KEYS.equip);
+      const tb = document.getElementById('rpa-equip-tbody');
+      if (!tb) return;
+      if (!lista.length) { tb.innerHTML = '<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhum equipamento cadastrado</td></tr>'; return; }
+      tb.innerHTML = lista.map((e,i) => `
+        <tr style="border-bottom:1px solid var(--border);cursor:pointer${rpaEquipSel===i?' background:var(--green-dim)':''}" onclick="rpaEquip.selecionar(${i})">
+          <td style="padding:8px 10px;font-weight:700;color:var(--green)">${e.id}</td>
+          <td style="padding:8px 10px">${e.desc}</td>
+          <td style="padding:8px 10px">${e.ip}</td>
+          <td style="padding:8px 10px;text-align:center">${e.porta}</td>
+          <td style="padding:8px 10px;text-align:center"><input type="checkbox" ${e.conectar?'checked':''} style="accent-color:var(--green)" onclick="rpaEquip.toggleConectar(event,${i})"></td>
+        </tr>`).join('');
+      this.atualizarOnline();
+    },
+    atualizarOnline() {
+      const lista = rpaLoad(RPA_KEYS.equip).filter(e => e.conectar);
+      const tb = document.getElementById('rpa-online-tbody');
+      if (!tb) return;
+      const tipo = document.getElementById('rpa-tipo-equip')?.value || '';
+      const filtrado = tipo ? lista.filter(e => e.tipo === tipo) : lista;
+      if (!filtrado.length) { tb.innerHTML = '<tr><td colspan="3" style="padding:20px;text-align:center;color:var(--text3);font-size:12px">Nenhum equipamento online</td></tr>'; return; }
+      tb.innerHTML = filtrado.map(e => `<tr style="border-bottom:1px solid var(--border)"><td style="padding:7px 14px">${e.tipo||'—'}</td><td style="padding:7px 14px">${e.ip}</td><td style="padding:7px 14px">${e.porta}</td></tr>`).join('');
+    },
+    filtrar() { this.atualizarOnline(); },
+    selecionar(i) {
+      rpaEquipSel = i;
+      const e = rpaLoad(RPA_KEYS.equip)[i];
+      if (!e) return;
+      document.getElementById('rpa-equip-desc').value  = e.desc  || '';
+      document.getElementById('rpa-equip-ip').value    = e.ip    || '';
+      document.getElementById('rpa-equip-porta').value = e.porta || '';
+      document.getElementById('rpa-equip-id').value    = e.id    || '';
+      document.getElementById('rpa-equip-senha').value = e.senha || '';
+      const ti = document.getElementById('rpa-tipo-equip');
+      if (ti) ti.value = e.tipo || '';
+      this.renderizar();
+    },
+    novo() {
+      rpaEquipSel = null;
+      ['rpa-equip-desc','rpa-equip-ip','rpa-equip-porta','rpa-equip-id','rpa-equip-senha'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+    },
+    editar() { if (rpaEquipSel === null) { showToast('Selecione um equipamento na lista','warn'); return; } },
+    salvar() {
+      const v = id => document.getElementById(id)?.value?.trim() || '';
+      const desc = v('rpa-equip-desc'), ip = v('rpa-equip-ip'), porta = v('rpa-equip-porta');
+      if (!desc || !ip) { showToast('Preencha Descrição e IP','warn'); return; }
+      const lista = rpaLoad(RPA_KEYS.equip);
+      const tipo  = document.getElementById('rpa-tipo-equip')?.value || '';
+      const obj = { desc, ip, porta: porta||'80', id: parseInt(v('rpa-equip-id'))||lista.length+1, senha: v('rpa-equip-senha'), tipo, conectar: document.getElementById('rpa-conectar')?.checked || false };
+      if (rpaEquipSel !== null) { lista[rpaEquipSel] = obj; } else { lista.push(obj); }
+      rpaSave(RPA_KEYS.equip, lista);
+      rpaEquipSel = null;
+      this.renderizar();
+      showToast('Equipamento salvo!','ok');
+      this.novo();
+    },
+    toggleConectar(ev, i) {
+      ev.stopPropagation();
+      const lista = rpaLoad(RPA_KEYS.equip);
+      if (lista[i]) { lista[i].conectar = ev.target.checked; rpaSave(RPA_KEYS.equip, lista); this.atualizarOnline(); }
+    },
+    subEquips() { showToast('Sub equipamentos — em desenvolvimento','info'); }
+  };
+
+  // ── ABA LEITORES
+  const rpaLeit = {
+    popularEquipSelect() {
+      const sel = document.getElementById('rpa-leit-equip');
+      if (!sel) return;
+      const lista = rpaLoad(RPA_KEYS.equip);
+      sel.innerHTML = '<option value="">— Selecione —</option>' + lista.map(e => `<option value="${e.id}">${e.desc}</option>`).join('');
+    },
+    renderizar() {
+      const lista = rpaLoad(RPA_KEYS.leit);
+      const tb = document.getElementById('rpa-leit-tbody');
+      if (!tb) return;
+      if (!lista.length) { tb.innerHTML = '<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhum leitor cadastrado</td></tr>'; return; }
+      tb.innerHTML = lista.map((e,i) => `
+        <tr style="border-bottom:1px solid var(--border);cursor:pointer${rpaLeitSel===i?' background:var(--green-dim)':''}" onclick="rpaLeit.selecionar(${i})">
+          <td style="padding:8px 12px;font-weight:700;color:var(--green)">${i+1}</td>
+          <td style="padding:8px 12px">${e.desc}</td>
+          <td style="padding:8px 12px">${e.equipDesc||'—'}</td>
+          <td style="padding:8px 12px">${e.sentido}</td>
+          <td style="padding:8px 12px">${e.tipo}</td>
+        </tr>`).join('');
+    },
+    selecionar(i) {
+      rpaLeitSel = i;
+      const e = rpaLoad(RPA_KEYS.leit)[i];
+      if (!e) return;
+      document.getElementById('rpa-leit-desc').value = e.desc||'';
+      const se = document.getElementById('rpa-leit-equip');
+      if (se) se.value = e.equipId||'';
+      document.getElementById('rpa-leit-sentido').value = e.sentido||'Entrada';
+      document.getElementById('rpa-leit-tipo').value    = e.tipo||'Facial';
+      this.renderizar();
+    },
+    novo() { rpaLeitSel = null; ['rpa-leit-desc'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; }); },
+    editar() { if (rpaLeitSel === null) { showToast('Selecione um leitor na lista','warn'); return; } },
+    excluir() {
+      if (rpaLeitSel === null) { showToast('Selecione um leitor','warn'); return; }
+      if (!confirm('Excluir este leitor?')) return;
+      const lista = rpaLoad(RPA_KEYS.leit);
+      lista.splice(rpaLeitSel, 1); rpaSave(RPA_KEYS.leit, lista); rpaLeitSel = null; this.renderizar(); showToast('Leitor excluído','ok');
     },
     salvar() {
-      const s = id => document.getElementById(id)?.value || '';
-      const cfg = {
-        nomeCond:   s('cfg-nome-cond'),
-        cnpj:       s('cfg-cnpj'),
-        endereco:   s('cfg-end'),
-        cidade:     s('cfg-cidade'),
-        telAdm:     s('cfg-tel-adm'),
-        emailAdm:   s('cfg-email-adm'),
-        porteiro:   s('cfg-porteiro'),
-        turno:      document.getElementById('cfg-turno')?.value || '',
-        alertVisit: parseInt(s('cfg-alert-visit')) || 60,
-        alertChave: parseInt(s('cfg-alert-chave')) || 12,
-      };
-      localStorage.setItem('sys_config', JSON.stringify(cfg));
-      showToast('Configurações salvas!', 'ok');
-      closeModule('mod-configurar');
+      const v = id => document.getElementById(id)?.value?.trim() || '';
+      const desc = v('rpa-leit-desc');
+      if (!desc) { showToast('Informe a Descrição do leitor','warn'); return; }
+      const equipId = v('rpa-leit-equip');
+      const equipDesc = rpaLoad(RPA_KEYS.equip).find(e => String(e.id) === equipId)?.desc || '';
+      const lista = rpaLoad(RPA_KEYS.leit);
+      const obj = { desc, equipId, equipDesc, sentido: document.getElementById('rpa-leit-sentido')?.value||'Entrada', tipo: document.getElementById('rpa-leit-tipo')?.value||'Facial' };
+      if (rpaLeitSel !== null) lista[rpaLeitSel] = obj; else lista.push(obj);
+      rpaSave(RPA_KEYS.leit, lista); rpaLeitSel = null; this.renderizar(); showToast('Leitor salvo!','ok'); this.novo();
+    }
+  };
+
+  // ── ABA PERFIS DE ACESSO
+  const rpaPerfil = {
+    popularLeitores() {
+      const div = document.getElementById('rpa-perfil-leitores-check');
+      if (!div) return;
+      const lista = rpaLoad(RPA_KEYS.leit);
+      if (!lista.length) { div.innerHTML = '<span style="color:var(--text3);font-size:12px">Cadastre leitores na aba Leitores primeiro</span>'; return; }
+      div.innerHTML = lista.map((l,i) => `<label style="display:flex;align-items:center;gap:5px;font-size:12px;cursor:pointer"><input type="checkbox" class="rpa-perf-leit" value="${i}" style="accent-color:var(--green)"> ${l.desc}</label>`).join('');
+    },
+    renderizar() {
+      const lista = rpaLoad(RPA_KEYS.perfil);
+      const tb = document.getElementById('rpa-perfil-tbody');
+      if (!tb) return;
+      if (!lista.length) { tb.innerHTML = '<tr><td colspan="4" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhum perfil cadastrado</td></tr>'; return; }
+      tb.innerHTML = lista.map((e,i) => `
+        <tr style="border-bottom:1px solid var(--border);cursor:pointer${rpaPerfilSel===i?' background:var(--green-dim)':''}" onclick="rpaPerfil.selecionar(${i})">
+          <td style="padding:8px 12px;font-weight:700;color:var(--green)">${i+1}</td>
+          <td style="padding:8px 12px">${e.nome}</td>
+          <td style="padding:8px 12px"><span style="padding:2px 8px;border-radius:10px;background:var(--green-dim);color:var(--green);font-size:11px;font-weight:600">${e.tipo}</span></td>
+          <td style="padding:8px 12px;font-size:12px;color:var(--text2)">${(e.leitores||[]).join(', ')||'Todos'}</td>
+        </tr>`).join('');
+    },
+    selecionar(i) {
+      rpaPerfilSel = i;
+      const e = rpaLoad(RPA_KEYS.perfil)[i];
+      if (!e) return;
+      document.getElementById('rpa-perfil-nome').value = e.nome||'';
+      document.getElementById('rpa-perfil-tipo').value = e.tipo||'Liberado';
+      this.renderizar();
+    },
+    novo() { rpaPerfilSel = null; const el=document.getElementById('rpa-perfil-nome'); if(el) el.value=''; },
+    editar() { if (rpaPerfilSel === null) { showToast('Selecione um perfil','warn'); return; } },
+    excluir() {
+      if (rpaPerfilSel === null) { showToast('Selecione um perfil','warn'); return; }
+      if (!confirm('Excluir este perfil?')) return;
+      const lista = rpaLoad(RPA_KEYS.perfil);
+      lista.splice(rpaPerfilSel, 1); rpaSave(RPA_KEYS.perfil, lista); rpaPerfilSel = null; this.renderizar(); showToast('Perfil excluído','ok');
+    },
+    salvar() {
+      const nome = document.getElementById('rpa-perfil-nome')?.value?.trim() || '';
+      if (!nome) { showToast('Informe o nome do perfil','warn'); return; }
+      const leitores = [...document.querySelectorAll('.rpa-perf-leit:checked')].map(cb => {
+        const lts = rpaLoad(RPA_KEYS.leit);
+        return lts[parseInt(cb.value)]?.desc || '';
+      }).filter(Boolean);
+      const lista = rpaLoad(RPA_KEYS.perfil);
+      const obj = { nome, tipo: document.getElementById('rpa-perfil-tipo')?.value||'Liberado', leitores };
+      if (rpaPerfilSel !== null) lista[rpaPerfilSel] = obj; else lista.push(obj);
+      rpaSave(RPA_KEYS.perfil, lista); rpaPerfilSel = null; this.renderizar(); showToast('Perfil salvo!','ok'); this.novo();
+    }
+  };
+
+  // ── ABA DISPENSADOR DE CARTÃO
+  const rpaDispCart = {
+    renderizar() {
+      const lista = rpaLoad(RPA_KEYS.dc);
+      const tb = document.getElementById('rpa-dc-tbody');
+      if (!tb) return;
+      if (!lista.length) { tb.innerHTML = '<tr><td colspan="4" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhum dispensador cadastrado</td></tr>'; return; }
+      tb.innerHTML = lista.map((e,i) => `
+        <tr style="border-bottom:1px solid var(--border);cursor:pointer${rpaDcSel===i?' background:var(--green-dim)':''}" onclick="rpaDispCart.selecionar(${i})">
+          <td style="padding:8px 12px;font-weight:700;color:var(--green)">${i+1}</td>
+          <td style="padding:8px 12px">${e.desc}</td>
+          <td style="padding:8px 12px">${e.ip}</td>
+          <td style="padding:8px 12px">${e.porta}</td>
+        </tr>`).join('');
+    },
+    selecionar(i) {
+      rpaDcSel = i;
+      const e = rpaLoad(RPA_KEYS.dc)[i];
+      if (!e) return;
+      document.getElementById('rpa-dc-desc').value  = e.desc||'';
+      document.getElementById('rpa-dc-ip').value    = e.ip||'';
+      document.getElementById('rpa-dc-porta').value = e.porta||'';
+      this.renderizar();
+    },
+    novo() { rpaDcSel = null; ['rpa-dc-desc','rpa-dc-ip','rpa-dc-porta'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; }); },
+    editar() { if (rpaDcSel === null) { showToast('Selecione um dispensador','warn'); return; } },
+    excluir() {
+      if (rpaDcSel === null) { showToast('Selecione um dispensador','warn'); return; }
+      if (!confirm('Excluir este dispensador?')) return;
+      const lista = rpaLoad(RPA_KEYS.dc);
+      lista.splice(rpaDcSel, 1); rpaSave(RPA_KEYS.dc, lista); rpaDcSel = null; this.renderizar(); showToast('Dispensador excluído','ok');
+    },
+    salvar() {
+      const v = id => document.getElementById(id)?.value?.trim() || '';
+      const desc = v('rpa-dc-desc'), ip = v('rpa-dc-ip');
+      if (!desc || !ip) { showToast('Preencha Descrição e IP','warn'); return; }
+      const lista = rpaLoad(RPA_KEYS.dc);
+      const obj = { desc, ip, porta: v('rpa-dc-porta')||'8080' };
+      if (rpaDcSel !== null) lista[rpaDcSel] = obj; else lista.push(obj);
+      rpaSave(RPA_KEYS.dc, lista); rpaDcSel = null; this.renderizar(); showToast('Dispensador salvo!','ok'); this.novo();
+    }
+  };
+
+  // ── ABA IMPRESSORAS
+  const rpaImpr = {
+    renderizar() {
+      const lista = rpaLoad(RPA_KEYS.impr);
+      const tb = document.getElementById('rpa-impr-tbody');
+      if (!tb) return;
+      if (!lista.length) { tb.innerHTML = '<tr><td colspan="4" style="padding:24px;text-align:center;color:var(--text3);font-size:12px">Nenhuma impressora cadastrada</td></tr>'; return; }
+      tb.innerHTML = lista.map((e,i) => `
+        <tr style="border-bottom:1px solid var(--border);cursor:pointer${rpaImprSel===i?' background:var(--green-dim)':''}" onclick="rpaImpr.selecionar(${i})">
+          <td style="padding:8px 12px;font-weight:700;color:var(--green)">${i+1}</td>
+          <td style="padding:8px 12px">${e.desc}</td>
+          <td style="padding:8px 12px">${e.tipo}</td>
+          <td style="padding:8px 12px">${e.ip||'—'}</td>
+        </tr>`).join('');
+    },
+    selecionar(i) {
+      rpaImprSel = i;
+      const e = rpaLoad(RPA_KEYS.impr)[i];
+      if (!e) return;
+      document.getElementById('rpa-impr-desc').value = e.desc||'';
+      document.getElementById('rpa-impr-tipo').value = e.tipo||'Cartão PVC';
+      document.getElementById('rpa-impr-ip').value   = e.ip||'';
+      this.renderizar();
+    },
+    novo() { rpaImprSel = null; ['rpa-impr-desc','rpa-impr-ip'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; }); },
+    editar() { if (rpaImprSel === null) { showToast('Selecione uma impressora','warn'); return; } },
+    excluir() {
+      if (rpaImprSel === null) { showToast('Selecione uma impressora','warn'); return; }
+      if (!confirm('Excluir esta impressora?')) return;
+      const lista = rpaLoad(RPA_KEYS.impr);
+      lista.splice(rpaImprSel, 1); rpaSave(RPA_KEYS.impr, lista); rpaImprSel = null; this.renderizar(); showToast('Impressora excluída','ok');
+    },
+    salvar() {
+      const v = id => document.getElementById(id)?.value?.trim() || '';
+      const desc = v('rpa-impr-desc');
+      if (!desc) { showToast('Informe a descrição da impressora','warn'); return; }
+      const lista = rpaLoad(RPA_KEYS.impr);
+      const obj = { desc, tipo: document.getElementById('rpa-impr-tipo')?.value||'Cartão PVC', ip: v('rpa-impr-ip') };
+      if (rpaImprSel !== null) lista[rpaImprSel] = obj; else lista.push(obj);
+      rpaSave(RPA_KEYS.impr, lista); rpaImprSel = null; this.renderizar(); showToast('Impressora salva!','ok'); this.novo();
     }
   };
 
@@ -5842,10 +6909,11 @@
       setTimeout(() => document.getElementById('wiz-doc-input')?.focus(), 140);
     },
 
-    setDocTipo(tipo, el) {
+    setDocTipo(tipo) {
       wizDocTipo = tipo;
-      document.querySelectorAll('.wiz-doc-chip').forEach(c => c.classList.remove('active'));
-      el.classList.add('active');
+      // Sincroniza o select se chamado programaticamente
+      const sel = document.getElementById('wiz-doc-select');
+      if (sel && sel.value !== tipo) sel.value = tipo;
       document.getElementById('wiz-doc-input').placeholder =
         tipo === 'CPF'   ? '000.000.000-00' :
         tipo === 'RG'    ? '00.000.000-0'   :
@@ -6104,8 +7172,9 @@
       this.removerFoto();
       // Resetar tipo pessoa
       document.querySelectorAll('.wiz-type-btn').forEach((b,i) => b.classList.toggle('active', i===0));
-      // Resetar doc chips
-      document.querySelectorAll('.wiz-doc-chip').forEach((c,i) => c.classList.toggle('active', i===0));
+      // Resetar select de documento
+      const docSel = document.getElementById('wiz-doc-select');
+      if (docSel) docSel.value = 'CPF';
       wizDocTipo = 'CPF'; wizTipoPessoa = 'Visitante';
     },
 
