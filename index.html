@@ -1666,6 +1666,125 @@
   @media(max-width:768px){ .entr-list-panel{width:100%;border-right:none;} .entr-layout{flex-direction:column;} }
 
   /* ══ MÓDULO BUSCA ═════════════════════════════════════ */
+  /* ── WIZARD ENTRADA ─────────────────────────────────── */
+  .wiz-steps {
+    display: flex; align-items: center; gap: 0; padding: 16px 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .wiz-step {
+    display: flex; align-items: center; gap: 8px; flex: 1;
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    padding-bottom: 12px; border-bottom: 3px solid transparent;
+    cursor: default; transition: all .2s;
+  }
+  .wiz-step.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .wiz-step.done   { color: var(--green-glow); border-bottom-color: var(--green-glow); }
+  .wiz-step-num {
+    width: 22px; height: 22px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-size: 11px; font-weight: 800;
+    background: var(--surface2); color: var(--text-muted); flex-shrink: 0;
+    border: 2px solid var(--border);
+  }
+  .wiz-step.active .wiz-step-num { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .wiz-step.done   .wiz-step-num { background: var(--green-glow); color: #fff; border-color: var(--green-glow); }
+  .wiz-sep { width: 24px; height: 1px; background: var(--border); flex-shrink: 0; margin-bottom: 3px; }
+
+  .wiz-body { padding: 16px 20px; overflow-y: auto; max-height: calc(90vh - 200px); }
+
+  .wiz-field-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+  .wiz-field { display: flex; flex-direction: column; gap: 4px; }
+  .wiz-field label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
+  .wiz-input {
+    width: 100%; padding: 9px 12px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface2);
+    color: var(--text); font-size: 13px; box-sizing: border-box;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .wiz-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(31,111,235,.12); }
+  .wiz-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px; }
+
+  .wiz-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .wiz-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+  .wiz-type-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .wiz-type-btn {
+    flex: 1; min-width: 100px; padding: 10px 8px; border-radius: 10px;
+    border: 2px solid var(--border); background: var(--surface2);
+    color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    transition: all .15s;
+  }
+  .wiz-type-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .wiz-type-btn.active { border-color: var(--accent); background: rgba(31,111,235,.12); color: var(--accent); }
+  .wiz-type-btn svg { width: 22px; height: 22px; }
+
+  .wiz-doc-type-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .wiz-doc-chip {
+    padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;
+    border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted);
+    cursor: pointer; transition: all .15s;
+  }
+  .wiz-doc-chip.active { background: rgba(31,111,235,.15); color: var(--accent); border-color: var(--accent); }
+
+  .wiz-foto-area {
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .wiz-foto-preview {
+    width: 90px; height: 90px; border-radius: 12px; border: 2px dashed var(--border);
+    background: var(--surface2); display: flex; align-items: center; justify-content: center;
+    overflow: hidden; flex-shrink: 0;
+  }
+  .wiz-foto-preview img { width: 100%; height: 100%; object-fit: cover; }
+  .wiz-foto-preview svg { width: 32px; height: 32px; color: var(--text-muted); opacity: .4; }
+  .wiz-foto-btns { display: flex; flex-direction: column; gap: 6px; }
+
+  .wiz-found-banner {
+    background: rgba(46,160,67,.12); border: 1px solid var(--green-dim); border-radius: 10px;
+    padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+    font-size: 12px; color: var(--green-glow); font-weight: 600; margin-bottom: 14px;
+  }
+  .wiz-found-banner svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  .wiz-morador-list { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; }
+  .wiz-morador-card {
+    display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 10px;
+    border: 2px solid var(--border); background: var(--surface2); cursor: pointer;
+    transition: all .15s;
+  }
+  .wiz-morador-card:hover { border-color: var(--accent); }
+  .wiz-morador-card.selected { border-color: var(--accent); background: rgba(31,111,235,.08); }
+  .wiz-morador-avatar {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--surface);
+    border: 2px solid var(--border); display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; color: var(--accent); overflow: hidden; flex-shrink: 0;
+  }
+  .wiz-morador-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .wiz-morador-info { flex: 1; min-width: 0; }
+  .wiz-morador-name { font-size: 13px; font-weight: 700; color: var(--text); }
+  .wiz-morador-meta { font-size: 10px; color: var(--text-muted); }
+
+  .wiz-footer {
+    display: flex; align-items: center; justify-content: space-between; padding: 12px 20px;
+    border-top: 1px solid var(--border); gap: 8px; background: var(--surface);
+    border-radius: 0 0 16px 16px;
+  }
+  .wiz-footer-info { font-size: 11px; color: var(--text-muted); flex: 1; }
+
+  .wiz-veiculo-row { display: flex; align-items: center; gap: 8px; }
+  .wiz-add-veiculo { font-size: 11px; padding: 6px 10px; }
+  .wiz-remove-btn { font-size: 11px; padding: 5px 8px; color: var(--red); border: 1px solid var(--red); background: transparent; border-radius: 6px; cursor: pointer; }
+  .wiz-remove-btn:hover { background: rgba(192,57,43,.1); }
+
+  .wiz-summary-card {
+    background: var(--surface2); border-radius: 12px; padding: 14px 16px;
+    margin-bottom: 10px; border: 1px solid var(--border);
+  }
+  .wiz-summary-title { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+  .wiz-summary-row { display: flex; gap: 8px; font-size: 12px; margin-bottom: 4px; }
+  .wiz-summary-label { color: var(--text-muted); min-width: 100px; flex-shrink: 0; }
+  .wiz-summary-val { color: var(--text); font-weight: 600; }
+
+  /* ─────────────────────────────────────────────────────── */
   .busca-panel {
     display: flex;
     flex-direction: column;
@@ -1819,293 +1938,6 @@
     flex-shrink: 0;
   }
   .busca-stats strong { color: var(--text); }
-
-  /* ── MODAL AUTORIZAR ENTRADA ──────────────────────────── */
-  #mod-autorizar-entrada { z-index: 2100; }
-  #mod-autorizar-entrada .mod-panel { max-width: 820px; }
-
-  .ae-layout {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 0;
-    height: calc(100% - 60px);
-    overflow: hidden;
-  }
-
-  .ae-sidebar {
-    background: var(--surface2);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 14px;
-    gap: 12px;
-    overflow-y: auto;
-  }
-
-  .ae-foto-wrap {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid var(--border);
-    background: var(--surface);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    font-size: 36px;
-    font-weight: 800;
-    color: var(--text-muted);
-    position: relative;
-    cursor: pointer;
-  }
-  .ae-foto-wrap img { width:100%; height:100%; object-fit:cover; }
-  .ae-foto-wrap:hover::after {
-    content: '📷';
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,.45);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    border-radius: 50%;
-  }
-
-  .ae-foto-badge {
-    font-size: 10px;
-    color: var(--text-muted);
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  .ae-doc-box {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 8px 10px;
-    font-size: 10px;
-    color: var(--text-muted);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .ae-doc-box strong { font-size: 12px; color: var(--text); display: block; }
-
-  .ae-hist-title {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    align-self: flex-start;
-    margin-top: 4px;
-  }
-
-  .ae-hist-row {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 6px 8px;
-    font-size: 10px;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-  .ae-hist-row strong { color: var(--text); }
-
-  .ae-body {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    padding: 16px;
-    gap: 14px;
-  }
-
-  .ae-titulo {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--green);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .ae-nome {
-    font-size: 13px;
-    color: var(--text-muted);
-  }
-
-  .ae-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 12px 14px;
-  }
-  .ae-section-title {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .ae-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .ae-grid.cols3 { grid-template-columns: 1fr 1fr 1fr; }
-  .ae-field { display: flex; flex-direction: column; gap: 3px; }
-  .ae-field.full { grid-column: 1 / -1; }
-  .ae-field label { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing:.4px; }
-  .ae-field input, .ae-field select {
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    color: var(--text);
-    font-size: 12px;
-    padding: 6px 8px;
-    border-radius: 6px;
-    outline: none;
-    transition: border .15s;
-  }
-  .ae-field input:focus, .ae-field select:focus { border-color: var(--green); }
-
-  .ae-visitado-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 8px 10px;
-    cursor: pointer;
-    transition: border .15s;
-  }
-  .ae-visitado-card:hover { border-color: var(--green); }
-  .ae-visitado-card .av-avatar {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: var(--green-dim);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 800; color: var(--green);
-    overflow: hidden; flex-shrink: 0;
-  }
-  .ae-visitado-card .av-avatar img { width:100%;height:100%;object-fit:cover; }
-  .ae-visitado-nome { font-size: 12px; font-weight: 700; color: var(--text); }
-  .ae-visitado-meta { font-size: 10px; color: var(--text-muted); }
-  .ae-visitado-vazio { font-size: 12px; color: var(--text-muted); display:flex;align-items:center;gap:6px; }
-
-  .ae-footer {
-    display: flex;
-    gap: 10px;
-    padding: 12px 16px;
-    border-top: 1px solid var(--border);
-    background: var(--surface);
-    flex-shrink: 0;
-  }
-
-  /* Modal Captura Facial */
-  #mod-captura-facial {
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.7);
-    z-index: 2200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-  }
-  #mod-captura-facial.open { display: flex; }
-  .cf-panel {
-    background: var(--surface);
-    border-radius: 12px;
-    padding: 24px;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.3);
-  }
-  .cf-title { font-size: 16px; font-weight: 700; color: var(--text); display:flex;align-items:center;gap:8px; }
-  .cf-preview {
-    width: 100%;
-    height: 220px;
-    background: #111;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
-  .cf-preview video { width:100%;height:100%;object-fit:cover;display:none; }
-  .cf-preview canvas { width:100%;height:100%;object-fit:cover;display:none; }
-  .cf-preview .cf-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: rgba(255,255,255,.4); font-size: 12px; text-align: center;
-  }
-  .cf-guide {
-    position: absolute;
-    inset: 10px;
-    border: 2px dashed rgba(255,255,255,.3);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-  .cf-status {
-    font-size: 11px; color: var(--text-muted); text-align: center;
-    background: var(--surface2); border-radius: 6px; padding: 6px 10px;
-  }
-  .cf-btns { display:flex;gap:8px; }
-
-  /* Seletor morador (overlay dentro do modal) */
-  #ae-seletor-morador {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,.5);
-    z-index: 50;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-  }
-  #ae-seletor-morador.open { display: flex; }
-  .aesm-panel {
-    background: var(--surface);
-    border-radius: 10px;
-    padding: 16px;
-    width: 340px;
-    max-height: 420px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: 0 16px 48px rgba(0,0,0,.25);
-  }
-  .aesm-title { font-size: 13px; font-weight: 700; color: var(--text); }
-  .aesm-search {
-    border: 1px solid var(--border); background: var(--surface2);
-    border-radius: 6px; padding: 7px 10px; font-size: 12px;
-    color: var(--text); outline: none; width: 100%;
-  }
-  .aesm-search:focus { border-color: var(--green); }
-  .aesm-list { overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
-  .aesm-item {
-    display: flex; align-items: center; gap: 8px;
-    padding: 7px 8px; border-radius: 6px; cursor: pointer;
-    border: 1px solid transparent;
-  }
-  .aesm-item:hover { background: var(--surface2); border-color: var(--border); }
-  .aesm-item .sm-av {
-    width: 30px; height: 30px; border-radius: 50%;
-    background: var(--green-dim); display: flex; align-items: center;
-    justify-content: center; font-size: 11px; font-weight: 800;
-    color: var(--green); overflow: hidden; flex-shrink: 0;
-  }
-  .aesm-item .sm-av img { width:100%;height:100%;object-fit:cover; }
-  .aesm-item-nome { font-size: 12px; font-weight: 600; color: var(--text); }
-  .aesm-item-meta { font-size: 10px; color: var(--text-muted); }
 
   /* ══ MÓDULO VISITANTES ════════════════════════════════ */
   .visit-list-panel { width:340px;min-width:260px;border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;background:var(--surface); }
@@ -2865,7 +2697,7 @@
   </button>
 
   <!-- Busca por Doc -->
-  <button class="tool-btn" title="Busca por Documento" onclick="busca.open()">
+  <button class="tool-btn" title="Busca por Documento" onclick="buscaWiz.open()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
       <circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/>
     </svg>
@@ -3131,7 +2963,7 @@
         </svg>
         <span>Registrar Entrega</span>
       </div>
-      <div class="quick-card" onclick="busca.open()">
+      <div class="quick-card" onclick="buscaWiz.open()">
         <svg viewBox="0 0 24 24" fill="none" stroke="#5a7a5a" stroke-width="1.6">
           <circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/>
         </svg>
@@ -3372,297 +3204,233 @@
 
 
 <!-- ══ MÓDULO BUSCA ════════════════════════════════════ -->
+<!-- ══ MÓDULO ENTRADA VISITANTES/PRESTADORES (WIZARD) ══ -->
 <div class="mod-overlay" id="mod-busca">
-  <div class="mod-panel">
+  <div class="mod-panel" style="max-width:600px">
     <div class="mod-header">
       <div class="mod-header-left">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/>
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+          <polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
         </svg>
         <div>
-          <div class="mod-title">Busca Geral</div>
-          <div class="mod-subtitle">Pesquise por nome, CPF, RG, placa, bloco ou apartamento</div>
+          <div class="mod-title">Entrada de Visitantes/Prestadores</div>
+          <div class="mod-subtitle" id="wiz-subtitle">Etapa 1 — Identificação</div>
         </div>
       </div>
       <button class="mod-close" onclick="closeModule('mod-busca')">✕</button>
     </div>
 
-    <div class="busca-panel">
-      <div class="busca-hero">
-        <div class="busca-hero-title">🔍 O que deseja localizar?</div>
-        <div class="busca-input-row">
-          <div class="busca-big-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
-            <input class="busca-big-input" type="text" id="busca-input"
-              placeholder="Nome, CPF, RG, placa, bloco, apartamento..."
-              oninput="busca.pesquisar()">
-          </div>
-          <button class="btn btn-secondary" onclick="busca.limpar()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-            Limpar
-          </button>
-        </div>
-        <div class="busca-type-chips">
-          <button class="busca-type-chip active" data-btype="todos" onclick="busca.setTipo(this,'todos')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>Todos
-          </button>
-          <button class="busca-type-chip" data-btype="nome" onclick="busca.setTipo(this,'nome')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>Nome
-          </button>
-          <button class="busca-type-chip" data-btype="cpf" onclick="busca.setTipo(this,'cpf')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10h8M8 14h5"/></svg>CPF
-          </button>
-          <button class="busca-type-chip" data-btype="rg" onclick="busca.setTipo(this,'rg')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 10h2M15 14h2M3 14h6"/></svg>RG
-          </button>
-          <button class="busca-type-chip" data-btype="placa" onclick="busca.setTipo(this,'placa')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Placa
-          </button>
-          <button class="busca-type-chip" data-btype="bloco" onclick="busca.setTipo(this,'bloco')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>Bloco
-          </button>
-          <button class="busca-type-chip" data-btype="unidade" onclick="busca.setTipo(this,'unidade')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Apartamento
-          </button>
-        </div>
+    <!-- Steps indicator -->
+    <div class="wiz-steps">
+      <div class="wiz-step active" id="wiz-step-1">
+        <div class="wiz-step-num">1</div>
+        Identificação
       </div>
-
-      <div class="busca-resultados" id="busca-resultados">
-        <div class="busca-empty" id="busca-empty-state">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
-          <h3>Aguardando busca</h3>
-          <p>Digite qualquer dado na caixa acima para localizar moradores, unidades ou veículos no cadastro.</p>
-        </div>
+      <div class="wiz-sep"></div>
+      <div class="wiz-step" id="wiz-step-2">
+        <div class="wiz-step-num">2</div>
+        Pré-cadastro
       </div>
-
-      <div class="busca-stats" id="busca-stats" style="display:none">
-        <span id="busca-stats-txt"></span>
-        <span style="margin-left:auto;font-size:10px;color:var(--text-muted)">Clique num resultado para autorizar entrada</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ MODAL AUTORIZAR ENTRADA ════════════════════════ -->
-<div class="mod-overlay" id="mod-autorizar-entrada">
-  <div class="mod-panel" style="max-width:840px;padding:0;overflow:hidden;display:flex;flex-direction:column;position:relative;">
-    <!-- Seletor de Morador (overlay dentro do panel) -->
-    <div id="ae-seletor-morador">
-      <div class="aesm-panel">
-        <div class="aesm-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="7" r="4"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>
-          Selecionar Morador Visitado
-        </div>
-        <input class="aesm-search" id="aesm-search" type="text" placeholder="Buscar por nome, bloco, unidade..." oninput="aeEntrada.filtrarMoradores()">
-        <div class="aesm-list" id="aesm-list"></div>
-        <button class="btn btn-secondary" style="font-size:11px" onclick="aeEntrada.fecharSeletorMorador()">Cancelar</button>
+      <div class="wiz-sep"></div>
+      <div class="wiz-step" id="wiz-step-3">
+        <div class="wiz-step-num">3</div>
+        Vinculação
       </div>
     </div>
 
-    <div class="mod-header">
-      <div class="mod-header-left">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
-          <path d="M15 3h6v18h-6"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
-        </svg>
-        <div>
-          <div class="mod-title">Autorizando Entrada</div>
-          <div class="mod-subtitle" id="ae-subtitulo">Preencha os dados e autorize o acesso</div>
+    <!-- ETAPA 1: Identificação -->
+    <div class="wiz-body" id="wiz-body-1">
+      <div class="wiz-field-group">
+        <div class="wiz-field">
+          <label>Tipo de pessoa</label>
+          <div class="wiz-type-btns">
+            <button class="wiz-type-btn active" id="wiz-tipo-visitante" onclick="buscaWiz.setTipoPessoa('Visitante',this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="4"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>
+              Visitante
+            </button>
+            <button class="wiz-type-btn" id="wiz-tipo-prestador" onclick="buscaWiz.setTipoPessoa('Prestador',this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+              Prestador
+            </button>
+            <button class="wiz-type-btn" id="wiz-tipo-entrega" onclick="buscaWiz.setTipoPessoa('Entrega',this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12H3l9-9 9 9h-2M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/><path d="M9 22V12h6v10"/></svg>
+              Entrega
+            </button>
+          </div>
+        </div>
+
+        <div class="wiz-field">
+          <label>Buscar por documento</label>
+          <div class="wiz-doc-type-chips" style="margin-bottom:8px">
+            <button class="wiz-doc-chip active" onclick="buscaWiz.setDocTipo('CPF',this)">CPF</button>
+            <button class="wiz-doc-chip" onclick="buscaWiz.setDocTipo('RG',this)">RG</button>
+            <button class="wiz-doc-chip" onclick="buscaWiz.setDocTipo('Email',this)">Email</button>
+            <button class="wiz-doc-chip" onclick="buscaWiz.setDocTipo('Placa',this)">Placa</button>
+            <button class="wiz-doc-chip" onclick="buscaWiz.setDocTipo('CNPJ',this)">CNPJ</button>
+          </div>
+          <div style="display:flex;gap:8px">
+            <input class="wiz-input" type="text" id="wiz-doc-input"
+              placeholder="Digite para buscar no cadastro..."
+              oninput="buscaWiz.buscarDoc()"
+              style="flex:1">
+            <button class="btn btn-secondary" style="flex-shrink:0" onclick="buscaWiz.limparBusca()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Resultado da busca -->
+        <div id="wiz-busca-resultado" style="display:none"></div>
+
+        <div class="wiz-row2">
+          <div class="wiz-field">
+            <label>CPF</label>
+            <input class="wiz-input" type="text" id="wiz-cpf" placeholder="000.000.000-00" oninput="buscaWiz.formatarCPF(this)">
+          </div>
+          <div class="wiz-field">
+            <label>RG</label>
+            <input class="wiz-input" type="text" id="wiz-rg" placeholder="00.000.000-0">
+          </div>
+        </div>
+
+        <div class="wiz-row2">
+          <div class="wiz-field">
+            <label>Email</label>
+            <input class="wiz-input" type="email" id="wiz-email" placeholder="email@exemplo.com">
+          </div>
+          <div class="wiz-field">
+            <label>Placa do veículo</label>
+            <input class="wiz-input" type="text" id="wiz-placa" placeholder="ABC-1234" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+          </div>
+        </div>
+
+        <div class="wiz-row2">
+          <div class="wiz-field">
+            <label>Empresa</label>
+            <input class="wiz-input" type="text" id="wiz-empresa" placeholder="Nome da empresa">
+          </div>
+          <div class="wiz-field">
+            <label>CNPJ</label>
+            <input class="wiz-input" type="text" id="wiz-cnpj" placeholder="00.000.000/0000-00">
+          </div>
         </div>
       </div>
-      <button class="mod-close" onclick="closeModule('mod-autorizar-entrada');aeEntrada.limpar()">✕</button>
     </div>
 
-    <div class="ae-layout">
-      <!-- Sidebar: Foto + Doc + Histórico -->
-      <div class="ae-sidebar">
-        <div class="ae-foto-wrap" id="ae-foto-wrap" onclick="aeEntrada.tirarFoto()" title="Clique para capturar foto">
-          <span id="ae-foto-ini">?</span>
-          <img id="ae-foto-img" src="" style="display:none">
-        </div>
-        <div class="ae-foto-badge">Clique para capturar<br>foto do visitante</div>
-
-        <div class="ae-doc-box">
-          <span>Tipo: <strong id="ae-doc-tipo-txt">—</strong></span>
-          <span>Nº: <strong id="ae-doc-num-txt">—</strong></span>
-          <span>Tel: <strong id="ae-doc-tel-txt">—</strong></span>
-        </div>
-
-        <div class="ae-hist-title">Última Visita</div>
-        <div class="ae-hist-row" id="ae-hist-row">
-          <strong>—</strong><br>Sem registro anterior
-        </div>
-
-        <div class="ae-hist-title" style="margin-top:6px">Veículo</div>
-        <div class="ae-hist-row" id="ae-veiculo-row">
-          <strong>—</strong><br>Sem veículo
-        </div>
+    <!-- ETAPA 2: Pré-cadastro -->
+    <div class="wiz-body" id="wiz-body-2" style="display:none">
+      <div id="wiz-found-banner" style="display:none" class="wiz-found-banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span id="wiz-found-txt">Cadastro encontrado — dados preenchidos automaticamente</span>
       </div>
-
-      <!-- Body: Formulário de Entrada -->
-      <div class="ae-body">
-        <!-- Cabeçalho nome -->
-        <div>
-          <div class="ae-titulo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M15 3h6v18h-6"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-            <span id="ae-nome-titulo">Entrada de Visitante</span>
+      <div class="wiz-field-group">
+        <div class="wiz-foto-area">
+          <div class="wiz-foto-preview" id="wiz-foto-preview">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="7" r="4"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>
           </div>
-          <div class="ae-nome" id="ae-cpf-txt">CPF / RG: —</div>
-        </div>
-
-        <!-- Perfil e Empresa -->
-        <div class="ae-section">
-          <div class="ae-section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-            Identificação
-          </div>
-          <div class="ae-grid">
-            <div class="ae-field">
-              <label>Perfil de Acesso</label>
-              <select id="ae-perfil">
-                <option value="Visitante">Visitante</option>
-                <option value="Prestador">Prestador de Serviço</option>
-                <option value="Entregador">Entregador</option>
-                <option value="Funcionário">Funcionário</option>
-              </select>
-            </div>
-            <div class="ae-field">
-              <label>Empresa (opcional)</label>
-              <input type="text" id="ae-empresa" placeholder="Nome da empresa...">
-            </div>
-            <div class="ae-field">
-              <label>Motivo da Visita</label>
-              <select id="ae-motivo">
-                <option value="">— Selecione —</option>
-                <option value="Visita pessoal">Visita pessoal</option>
-                <option value="Entrega">Entrega</option>
-                <option value="Manutenção">Manutenção</option>
-                <option value="Prestação de serviço">Prestação de serviço</option>
-                <option value="Reunião">Reunião</option>
-                <option value="Outro">Outro</option>
-              </select>
-            </div>
-            <div class="ae-field">
-              <label>Motivo Personalizado</label>
-              <input type="text" id="ae-motivo-custom" placeholder="Descreva se necessário...">
-            </div>
+          <div class="wiz-foto-btns">
+            <label class="btn btn-secondary" style="cursor:pointer;font-size:11px;padding:6px 12px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Enviar foto
+              <input type="file" accept="image/*" style="display:none" onchange="buscaWiz.carregarFoto(this)">
+            </label>
+            <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px" onclick="buscaWiz.capturarCamera()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              Câmera
+            </button>
+            <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px;display:none" id="wiz-foto-remover" onclick="buscaWiz.removerFoto()">Remover</button>
           </div>
         </div>
+        <input type="hidden" id="wiz-foto-data">
 
-        <!-- Visitado -->
-        <div class="ae-section">
-          <div class="ae-section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-            Visitado(s) — Morador / Unidade
+        <div class="wiz-field">
+          <label>Nome completo *</label>
+          <input class="wiz-input" type="text" id="wiz-nome" placeholder="Nome do visitante/prestador">
+        </div>
+        <div class="wiz-row2">
+          <div class="wiz-field">
+            <label>Telefone</label>
+            <input class="wiz-input" type="tel" id="wiz-tel" placeholder="(00) 00000-0000">
           </div>
-          <div id="ae-visitado-card" class="ae-visitado-card" onclick="aeEntrada.abrirSeletorMorador()">
-            <div class="ae-visitado-vazio">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              Selecionar morador visitado (F1)
-            </div>
+          <div class="wiz-field">
+            <label>Tipo</label>
+            <select class="wiz-input wiz-select" id="wiz-tipo-display">
+              <option value="Visitante">Visitante</option>
+              <option value="Prestador">Prestador</option>
+              <option value="Entrega">Entrega</option>
+            </select>
           </div>
-          <div class="ae-grid" style="margin-top:8px">
-            <div class="ae-field">
-              <label>Horários / Validade</label>
-              <input type="time" id="ae-hora-entrada" value="">
-            </div>
-            <div class="ae-field">
-              <label>Obs. da Visita</label>
-              <input type="text" id="ae-obs-visita" placeholder="Observações...">
-            </div>
-          </div>
+        </div>
+        <div class="wiz-field">
+          <label>Motivo da visita</label>
+          <input class="wiz-input" type="text" id="wiz-motivo" placeholder="Ex: Visita pessoal, manutenção, entrega...">
+        </div>
+        <div class="wiz-field">
+          <label>Observações</label>
+          <input class="wiz-input" type="text" id="wiz-obs" placeholder="Observações adicionais (opcional)">
         </div>
 
         <!-- Veículo -->
-        <div class="ae-section">
-          <div class="ae-section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            Veículo (opcional)
-          </div>
-          <div class="ae-grid cols3">
-            <div class="ae-field">
-              <label>Placa</label>
-              <input type="text" id="ae-placa" placeholder="ABC-1234" oninput="this.value=this.value.toUpperCase()">
-            </div>
-            <div class="ae-field">
-              <label>Modelo</label>
-              <input type="text" id="ae-modelo" placeholder="Fiat Uno">
-            </div>
-            <div class="ae-field">
-              <label>Cor</label>
-              <input type="text" id="ae-cor" placeholder="Branco">
-            </div>
-          </div>
-        </div>
-
-        <!-- Captura Facial -->
-        <div class="ae-section">
-          <div class="ae-section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            Captura Biométrica / Facial
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <button class="btn btn-secondary" onclick="aeEntrada.abrirCaptura()" id="ae-btn-facial">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01"/></svg>
-              Capturar Facial
-            </button>
-            <button class="btn btn-secondary" onclick="aeEntrada.usarFotoPerfil()" style="display:none" id="ae-btn-usar-perfil">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="7" r="4"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>
-              Usar Foto do Perfil
-            </button>
-            <span id="ae-facial-status" style="font-size:11px;color:var(--text-muted)">Nenhuma captura realizada</span>
+        <div class="wiz-field">
+          <label>Veículo (opcional)</label>
+          <div class="wiz-row3">
+            <input class="wiz-input" type="text" id="wiz-veic-placa" placeholder="Placa" style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+            <input class="wiz-input" type="text" id="wiz-veic-modelo" placeholder="Modelo/Cor">
+            <input class="wiz-input" type="text" id="wiz-veic-cor" placeholder="Cor">
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Footer com botões -->
-    <div class="ae-footer">
-      <button class="btn btn-secondary" onclick="closeModule('mod-autorizar-entrada');aeEntrada.limpar()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        Cancelar
-      </button>
-      <div style="flex:1"></div>
-      <button class="btn btn-secondary" onclick="aeEntrada.preAutorizar()" style="color:var(--amber);border-color:var(--amber)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-        Pré-cadastrar
-      </button>
-      <button class="btn btn-primary" onclick="aeEntrada.autorizar()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M15 3h6v18h-6"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-        Autorizar Entrada
-      </button>
-    </div>
-  </div>
-</div>
+    <!-- ETAPA 3: Vinculação -->
+    <div class="wiz-body" id="wiz-body-3" style="display:none">
+      <div class="wiz-field-group">
+        <div class="wiz-field">
+          <label>Buscar unidade/morador</label>
+          <input class="wiz-input" type="text" id="wiz-unid-busca"
+            placeholder="Bloco, número ou nome do morador..."
+            oninput="buscaWiz.buscarUnidade()">
+        </div>
+        <div id="wiz-morador-lista" class="wiz-morador-list"></div>
 
-<!-- ══ MODAL CAPTURA FACIAL ═══════════════════════════ -->
-<div id="mod-captura-facial">
-  <div class="cf-panel">
-    <div class="cf-title">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-      Captura de Biometria Facial
-    </div>
-    <div class="cf-preview" id="cf-preview">
-      <div class="cf-guide"></div>
-      <video id="cf-video" autoplay playsinline></video>
-      <canvas id="cf-canvas"></canvas>
-      <div class="cf-placeholder" id="cf-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="48" height="48"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        <span>Câmera não iniciada</span>
+        <div class="wiz-row2" style="margin-top:4px">
+          <div class="wiz-field">
+            <label>Bloco</label>
+            <input class="wiz-input" type="text" id="wiz-bloco" placeholder="A, B, C..." style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+          </div>
+          <div class="wiz-field">
+            <label>Unidade</label>
+            <input class="wiz-input" type="text" id="wiz-unidade" placeholder="101, 202...">
+          </div>
+        </div>
+        <div class="wiz-field">
+          <label>Anfitrião / Morador visitado</label>
+          <input class="wiz-input" type="text" id="wiz-anfitriao" placeholder="Nome do morador ou responsável">
+        </div>
+
+        <!-- Resumo -->
+        <div style="margin-top:8px">
+          <div class="wiz-summary-card" id="wiz-resumo" style="display:none">
+            <div class="wiz-summary-title">📋 Resumo da entrada</div>
+            <div id="wiz-resumo-corpo"></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="cf-status" id="cf-status">Clique em "Capturar" para iniciar a câmera</div>
-    <div class="cf-btns">
-      <button class="btn btn-secondary" style="flex:1" onclick="aeEntrada.fecharCaptura()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        Cancelar
+
+    <!-- Footer com botões de navegação -->
+    <div class="wiz-footer">
+      <span class="wiz-footer-info" id="wiz-footer-info">Preencha os campos de identificação</span>
+      <button class="btn btn-secondary" id="wiz-btn-voltar" onclick="buscaWiz.voltar()" style="display:none">
+        ← Voltar
       </button>
-      <button class="btn btn-primary" style="flex:1" id="cf-btn-capturar" onclick="aeEntrada.capturarFrame()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
-        Capturar Biometria
+      <button class="btn btn-primary" id="wiz-btn-avancar" onclick="buscaWiz.avancar()">
+        Avançar →
       </button>
-      <button class="btn btn-primary" style="flex:1;display:none" id="cf-btn-confirmar" onclick="aeEntrada.confirmarFoto()">
+      <button class="btn btn-primary" id="wiz-btn-confirmar" onclick="buscaWiz.confirmar()" style="display:none;background:var(--green-glow)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
-        Confirmar Foto
+        Autorizar Entrada
       </button>
     </div>
   </div>
@@ -6036,505 +5804,444 @@
   };
 
   // ══ MÓDULO BUSCA ══════════════════════════════════════
-  let buscaTipo = 'todos';
+  // ══ WIZARD ENTRADA VISITANTES/PRESTADORES ═════════════
+  let wizEtapa      = 1;
+  let wizDocTipo    = 'CPF';
+  let wizTipoPessoa = 'Visitante';
+  let wizCadFound   = null;   // visitante já cadastrado encontrado
+  let wizMorSel     = null;   // morador selecionado na etapa 3
 
-  const busca = {
+  const buscaWiz = {
     open() {
+      wizEtapa = 1; wizDocTipo = 'CPF'; wizTipoPessoa = 'Visitante';
+      wizCadFound = null; wizMorSel = null;
+      this._goEtapa(1);
+      this._limparCampos();
       document.getElementById('mod-busca').classList.add('open');
-      setTimeout(() => document.getElementById('busca-input')?.focus(), 120);
+      setTimeout(() => document.getElementById('wiz-doc-input')?.focus(), 140);
     },
 
-    setTipo(el, tipo) {
-      document.querySelectorAll('.busca-type-chip').forEach(c => c.classList.remove('active'));
+    setDocTipo(tipo, el) {
+      wizDocTipo = tipo;
+      document.querySelectorAll('.wiz-doc-chip').forEach(c => c.classList.remove('active'));
       el.classList.add('active');
-      buscaTipo = tipo;
-      this.pesquisar();
+      document.getElementById('wiz-doc-input').placeholder =
+        tipo === 'CPF'   ? '000.000.000-00' :
+        tipo === 'RG'    ? '00.000.000-0'   :
+        tipo === 'Email' ? 'email@exemplo.com' :
+        tipo === 'Placa' ? 'ABC-1234'       :
+        tipo === 'CNPJ'  ? '00.000.000/0000-00' : 'Digite para buscar...';
+      document.getElementById('wiz-doc-input').value = '';
+      document.getElementById('wiz-busca-resultado').style.display = 'none';
     },
 
-    limpar() {
-      document.getElementById('busca-input').value = '';
-      buscaTipo = 'todos';
-      document.querySelectorAll('.busca-type-chip').forEach((c,i) => c.classList.toggle('active', i===0));
-      document.getElementById('busca-resultados').innerHTML = `
-        <div class="busca-empty" id="busca-empty-state">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
-          <h3>Aguardando busca</h3>
-          <p>Digite qualquer dado na caixa acima para localizar moradores, unidades ou veículos no cadastro.</p>
-        </div>`;
-      document.getElementById('busca-stats').style.display = 'none';
-      document.getElementById('busca-input').focus();
+    setTipoPessoa(tipo, el) {
+      wizTipoPessoa = tipo;
+      document.querySelectorAll('.wiz-type-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      // Sincroniza o select na etapa 2
+      const sel = document.getElementById('wiz-tipo-display');
+      if (sel) sel.value = tipo;
     },
 
-    highlight(text, q) {
-      if (!q || !text) return text || '—';
-      const esc = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      return String(text).replace(new RegExp(`(${esc})`, 'gi'),
-        '<span class="busca-highlight">$1</span>');
+    limparBusca() {
+      document.getElementById('wiz-doc-input').value = '';
+      document.getElementById('wiz-busca-resultado').style.display = 'none';
+      wizCadFound = null;
     },
 
-    pesquisar() {
-      const q = (document.getElementById('busca-input').value || '').trim();
-      if (q.length < 1) {
-        this.limpar();
-        return;
-      }
-      const ql = q.toLowerCase();
-      const tipo = buscaTipo;
+    formatarCPF(el) {
+      let v = el.value.replace(/\D/g,'');
+      if (v.length > 11) v = v.slice(0,11);
+      v = v.replace(/(\d{3})(\d)/,'$1.$2')
+           .replace(/(\d{3})\.(\d{3})(\d)/,'$1.$2.$3')
+           .replace(/(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})/,'$1.$2.$3-$4');
+      el.value = v;
+    },
 
-      // ── Helpers de match ───────────────────────────────
-      const matchNome   = m => m.nome.toLowerCase().includes(ql);
-      const matchCPF    = m => m.cpf && m.cpf.replace(/\D/g,'').includes(q.replace(/\D/g,''));
-      const matchRG     = m => m.rg  && m.rg.replace(/\D/g,'').includes(q.replace(/\D/g,''));
-      const matchPlaca  = m => m.veiculos?.some(v => v.placa.toLowerCase().includes(ql));
-      const matchBloco  = m => m.bloco && m.bloco.toLowerCase().includes(ql);
-      const matchUnid   = m => m.unidade && m.unidade.toLowerCase().includes(ql);
+    buscarDoc() {
+      const q = (document.getElementById('wiz-doc-input').value || '').trim();
+      const el = document.getElementById('wiz-busca-resultado');
+      if (q.length < 3) { el.style.display = 'none'; wizCadFound = null; return; }
 
-      // ── Moradores correspondentes ──────────────────────
-      let resMor = [];
-      if (tipo === 'todos' || tipo === 'nome')    resMor.push(...morDB.filter(m => matchNome(m) && !resMor.includes(m)));
-      if (tipo === 'todos' || tipo === 'cpf')     resMor.push(...morDB.filter(m => matchCPF(m)  && !resMor.includes(m)));
-      if (tipo === 'todos' || tipo === 'rg')      resMor.push(...morDB.filter(m => matchRG(m)   && !resMor.includes(m)));
-      if (tipo === 'todos' || tipo === 'placa')   resMor.push(...morDB.filter(m => matchPlaca(m) && !resMor.includes(m)));
-      if (tipo === 'todos' || tipo === 'bloco')   resMor.push(...morDB.filter(m => matchBloco(m) && !resMor.includes(m)));
-      if (tipo === 'todos' || tipo === 'unidade') resMor.push(...morDB.filter(m => matchUnid(m)  && !resMor.includes(m)));
-      // dedup
-      resMor = [...new Map(resMor.map(m=>[m.id,m])).values()];
+      const ql = q.toLowerCase().replace(/\D/g,'');
+      // Busca em visitDB e também em morDB (para preencher anfitrião)
+      let found = null;
 
-      // ── Veículos encontrados (via moradores) ──────────
-      const resVeic = [];
-      if (tipo === 'todos' || tipo === 'placa') {
-        morDB.forEach(m => {
-          m.veiculos?.forEach(v => {
-            if (v.placa.toLowerCase().includes(ql)) {
-              resVeic.push({ veiculo: v, morador: m });
-            }
-          });
+      // Busca em visitantes existentes
+      if (typeof visitDB !== 'undefined') {
+        found = visitDB.find(v => {
+          const docClean = (v.doc||'').replace(/\D/g,'');
+          if (wizDocTipo === 'CPF')   return docClean && docClean.includes(ql);
+          if (wizDocTipo === 'RG')    return docClean && docClean.includes(ql);
+          if (wizDocTipo === 'Email') return (v.email||'').toLowerCase().includes(q.toLowerCase());
+          if (wizDocTipo === 'Placa') return (v.placa||'').toLowerCase().includes(q.toLowerCase());
+          return docClean.includes(ql) || (v.nome||'').toLowerCase().includes(q.toLowerCase());
         });
       }
 
-      // ── Unidades correspondentes ───────────────────────
-      let resUnid = [];
-      if (tipo === 'todos' || tipo === 'unidade') {
-        resUnid = unidDB.filter(u =>
-          u.numero.toLowerCase().includes(ql) || u.bloco.toLowerCase().includes(ql)
-        );
-      }
-      if (tipo === 'bloco') {
-        resUnid = unidDB.filter(u => u.bloco.toLowerCase().includes(ql));
-      }
-
-      const total = resMor.length + resVeic.length + resUnid.length;
-      const el = document.getElementById('busca-resultados');
-
-      if (total === 0) {
+      if (found) {
+        wizCadFound = found;
+        el.style.display = 'block';
         el.innerHTML = `
-          <div class="busca-empty">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
-            <h3>Sem resultados</h3>
-            <p>Nenhum cadastro encontrado para <strong>"${q}"</strong>. Verifique a grafia ou tente outro campo.</p>
+          <div class="wiz-found-banner" style="margin-bottom:0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <div>
+              <div style="font-weight:800">${found.nome}</div>
+              <div style="font-size:10px;font-weight:400;opacity:.85">${found.doc_tipo}: ${found.doc} · ${found.status==='dentro'?'🟢 No local agora':'⚫ Último registro: '+(found.entrada||'—')}</div>
+            </div>
+            <button class="btn btn-secondary" style="font-size:10px;padding:4px 10px;margin-left:auto" onclick="buscaWiz.usarCadastro()">Usar cadastro</button>
           </div>`;
-        document.getElementById('busca-stats').style.display = 'flex';
-        document.getElementById('busca-stats-txt').innerHTML = `Busca por <strong>"${q}"</strong> — <strong>0</strong> resultado(s)`;
-        return;
-      }
-
-      let html = '';
-
-      // ── Seção Moradores ────────────────────────────────
-      if (resMor.length) {
-        const perfilCls = {Titular:'perfil-Titular',Dependente:'perfil-Dependente',Funcionário:'perfil-Funcionário',Proprietário:'perfil-Proprietário'};
-        html += `<div class="busca-section-title">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>
-          Moradores <span class="count-badge">${resMor.length}</span>
-        </div>`;
-        html += resMor.map(m => {
-          const ini = m.nome.split(' ').slice(0,2).map(w=>w[0]).join('');
-          const avatarHtml = m.foto
-            ? `<img src="${m.foto}">`
-            : `<span style="font-size:14px;font-weight:800">${ini}</span>`;
-          const veicsHint = m.veiculos?.length
-            ? `🚗 ${m.veiculos.map(v=>this.highlight(v.placa,ql)).join(' · ')}`
-            : '';
-          return `
-            <div class="busca-result-card" onclick="closeModule('mod-busca');aeEntrada.abrirComMorador(morDB.find(x=>x.id===${m.id}))">
-              <div class="busca-result-icon morador">${avatarHtml}</div>
-              <div class="busca-result-body">
-                <div class="busca-result-nome">${this.highlight(m.nome, ql)}</div>
-                <div class="busca-result-meta">
-                  <span>🏠 Bl. ${this.highlight(m.bloco,ql)} · Un. ${this.highlight(m.unidade,ql)}</span>
-                  ${m.cpf?`<span>CPF: ${this.highlight(m.cpf,ql)}</span>`:''}
-                  ${m.rg?`<span>RG: ${this.highlight(m.rg,ql)}</span>`:''}
-                  ${m.cel||m.tel?`<span>📞 ${m.cel||m.tel}</span>`:''}
-                  ${veicsHint?`<span>${veicsHint}</span>`:''}
-                </div>
-              </div>
-              <div class="busca-result-badge">
-                <span class="perfil-badge ${perfilCls[m.perfil]||'perfil-Titular'}">${m.perfil}</span>
-                <span class="event-badge badge-green">▶ Autorizar</span>
-              </div>
-            </div>`;
-        }).join('');
-      }
-
-      // ── Seção Veículos ─────────────────────────────────
-      if (resVeic.length) {
-        html += `<div class="busca-section-title">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          Veículos <span class="count-badge">${resVeic.length}</span>
-        </div>`;
-        html += resVeic.map(({veiculo:v, morador:m}) => `
-          <div class="busca-result-card" onclick="closeModule('mod-busca');moradores.open();setTimeout(()=>moradores.select&&moradores.select(${m.id}),300)">
-            <div class="busca-result-icon veiculo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="24" height="24">
-                <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/>
-                <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-              </svg>
-            </div>
-            <div class="busca-result-body">
-              <div class="busca-result-nome" style="font-family:monospace;letter-spacing:2px">${this.highlight(v.placa, ql)}</div>
-              <div class="busca-result-meta">
-                <span>${v.modelo||'—'} · ${v.cor||'—'}</span>
-                <span>Proprietário: <strong style="color:var(--text)">${m.nome}</strong></span>
-                <span>🏠 Bl. ${m.bloco} · Un. ${m.unidade}</span>
-              </div>
-            </div>
-            <div class="busca-result-badge">
-              <span class="event-badge badge-amber">Veículo</span>
-            </div>
-          </div>`).join('');
-      }
-
-      // ── Seção Unidades ─────────────────────────────────
-      if (resUnid.length) {
-        html += `<div class="busca-section-title">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
-          Unidades <span class="count-badge">${resUnid.length}</span>
-        </div>`;
-        html += resUnid.map(u => {
-          const titular = getTitular(u.titular_id);
-          const tipoClass = { 'Apartamento':'tipo-apto','Casa':'tipo-casa','Comercial':'tipo-comercial','Garagem':'tipo-garagem' };
-          const mors = getMoradoresUnid(u.numero, u.bloco);
-          return `
-            <div class="busca-result-card" onclick="closeModule('mod-busca');unidades.open();setTimeout(()=>unidades.select&&unidades.select(${u.id}),300)">
-              <div class="busca-result-icon unidade">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
-                  <rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/>
-                  <rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/>
-                </svg>
-              </div>
-              <div class="busca-result-body">
-                <div class="busca-result-nome">Unidade ${this.highlight(u.numero, ql)} · Bloco ${this.highlight(u.bloco, ql)}</div>
-                <div class="busca-result-meta">
-                  <span>${u.tipo} · ${u.area?u.area+' m²':'—'} · ${u.quartos||0} dorm.</span>
-                  <span>Titular: <strong style="color:var(--text)">${titular?titular.nome:'Sem titular'}</strong></span>
-                  <span>👥 ${mors.length} morador(es)</span>
-                  <span>🚗 ${u.vagas} vaga(s)</span>
-                </div>
-              </div>
-              <div class="busca-result-badge">
-                <span class="tipo-badge ${tipoClass[u.tipo]||'tipo-apto'}">${u.tipo}</span>
-                <span class="event-badge ${u.titular_id?'badge-green':'badge-amber'}">${u.titular_id?'Ocupada':'Vaga'}</span>
-              </div>
-            </div>`;
-        }).join('');
-      }
-
-      el.innerHTML = html;
-      document.getElementById('busca-stats').style.display = 'flex';
-      document.getElementById('busca-stats-txt').innerHTML =
-        `Busca por <strong>"${q}"</strong> — <strong>${total}</strong> resultado(s): ` +
-        `${resMor.length} morador(es) · ${resVeic.length} veículo(s) · ${resUnid.length} unidade(s)`;
-    },
-  };
-
-  // ══ MÓDULO AUTORIZAR ENTRADA (via Busca) ══════════════
-  let _aeDados = null;   // dados do visitante buscado
-  let _aeMorador = null; // morador selecionado
-  let _aeStream = null;  // stream da câmera
-  let _aeFotoCapturada = null; // base64 da foto
-
-  const aeEntrada = {
-    // Abre o modal populando com os dados do morador encontrado na busca
-    abrirComMorador(m) {
-      _aeDados = { tipo: 'morador', dados: m };
-      _aeMorador = null;
-      _aeFotoCapturada = m.foto || null;
-      this._popularSidebar(m.nome, m.cpf || m.rg || '—', 'CPF/RG', m.cel || m.tel || '—', m.foto);
-      document.getElementById('ae-nome-titulo').textContent = m.nome;
-      document.getElementById('ae-cpf-txt').textContent = `CPF: ${m.cpf || '—'} · RG: ${m.rg || '—'}`;
-      document.getElementById('ae-subtitulo').textContent = 'Morador identificado — confirme destino e autorize';
-      // Veículo
-      if (m.veiculos && m.veiculos.length) {
-        const v = m.veiculos[0];
-        document.getElementById('ae-placa').value = v.placa || '';
-        document.getElementById('ae-modelo').value = v.modelo || '';
-        document.getElementById('ae-cor').value = v.cor || '';
-        document.getElementById('ae-veiculo-row').innerHTML = `<strong>${v.placa}</strong><br>${v.modelo} · ${v.cor}`;
-      }
-      // Histórico últimas visitas
-      const hist = visitDB.filter(x => x.nome === m.nome || (m.cpf && x.doc === m.cpf)).slice(-1)[0];
-      if (hist) {
-        document.getElementById('ae-hist-row').innerHTML = `<strong>${hist.entrada || '—'}</strong><br>${hist.motivo || '—'} · Bl.${hist.bloco} Un.${hist.unidade}`;
-      }
-      // Definir hora atual
-      const agora = new Date();
-      document.getElementById('ae-hora-entrada').value = agora.toTimeString().slice(0,5);
-      // Se for morador, pré-selecionar ele mesmo como visitado (para caso de dependente)
-      this._setVisitado(m);
-      document.getElementById('ae-btn-usar-perfil').style.display = m.foto ? '' : 'none';
-      document.getElementById('mod-autorizar-entrada').classList.add('open');
-    },
-
-    // Abre o modal para visitante avulso (não cadastrado)
-    abrirAvulso(dados) {
-      // dados: { nome, doc, doc_tipo, tel, foto }
-      _aeDados = { tipo: 'avulso', dados };
-      _aeMorador = null;
-      _aeFotoCapturada = dados.foto || null;
-      this._popularSidebar(dados.nome || 'Visitante', dados.doc || '—', dados.doc_tipo || 'Doc', dados.tel || '—', dados.foto || '');
-      document.getElementById('ae-nome-titulo').textContent = dados.nome || 'Visitante';
-      document.getElementById('ae-cpf-txt').textContent = `${dados.doc_tipo || 'Doc'}: ${dados.doc || '—'}`;
-      document.getElementById('ae-subtitulo').textContent = 'Preencha os dados e autorize o acesso';
-      document.getElementById('ae-veiculo-row').innerHTML = '<strong>—</strong><br>Sem veículo';
-      document.getElementById('ae-hist-row').innerHTML = '<strong>—</strong><br>Sem registro anterior';
-      document.getElementById('ae-btn-usar-perfil').style.display = 'none';
-      const agora = new Date();
-      document.getElementById('ae-hora-entrada').value = agora.toTimeString().slice(0,5);
-      this._setVisitado(null);
-      document.getElementById('mod-autorizar-entrada').classList.add('open');
-    },
-
-    _popularSidebar(nome, doc, docTipo, tel, foto) {
-      const wrap = document.getElementById('ae-foto-wrap');
-      const ini  = nome.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
-      document.getElementById('ae-foto-ini').textContent = ini;
-      const img = document.getElementById('ae-foto-img');
-      if (foto) { img.src = foto; img.style.display = ''; document.getElementById('ae-foto-ini').style.display = 'none'; }
-      else       { img.style.display = 'none'; document.getElementById('ae-foto-ini').style.display = ''; }
-      document.getElementById('ae-doc-tipo-txt').textContent = docTipo;
-      document.getElementById('ae-doc-num-txt').textContent  = doc;
-      document.getElementById('ae-doc-tel-txt').textContent  = tel;
-      document.getElementById('ae-facial-status').textContent = foto ? '✅ Foto do cadastro carregada' : 'Nenhuma captura realizada';
-    },
-
-    _setVisitado(m) {
-      _aeMorador = m;
-      const card = document.getElementById('ae-visitado-card');
-      if (m) {
-        const ini = m.nome.split(' ').slice(0,2).map(w=>w[0]).join('');
-        const avatarHtml = m.foto
-          ? `<div class="av-avatar"><img src="${m.foto}"></div>`
-          : `<div class="av-avatar">${ini}</div>`;
-        card.innerHTML = `${avatarHtml}
-          <div>
-            <div class="ae-visitado-nome">${m.nome}</div>
-            <div class="ae-visitado-meta">Bloco ${m.bloco} · Unidade ${m.unidade} · ${m.perfil}</div>
-          </div>
-          <div style="margin-left:auto;font-size:10px;color:var(--text-muted)">clique para trocar</div>`;
       } else {
-        card.innerHTML = `<div class="ae-visitado-vazio">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          Selecionar morador visitado
-        </div>`;
+        wizCadFound = null;
+        el.style.display = 'none';
       }
     },
 
-    abrirSeletorMorador() {
-      document.getElementById('ae-seletor-morador').classList.add('open');
-      document.getElementById('aesm-search').value = '';
-      this.filtrarMoradores();
-      setTimeout(() => document.getElementById('aesm-search').focus(), 80);
+    usarCadastro() {
+      if (!wizCadFound) return;
+      const v = wizCadFound;
+      // Preencher campos da etapa 1
+      document.getElementById('wiz-cpf').value   = v.doc_tipo === 'CPF' ? v.doc : '';
+      document.getElementById('wiz-rg').value    = v.doc_tipo === 'RG'  ? v.doc : '';
+      document.getElementById('wiz-placa').value = v.placa || '';
+      document.getElementById('wiz-empresa').value = v.empresa || '';
+      // Avança diretamente preenchendo etapa 2
+      this.avancar();
     },
 
-    fecharSeletorMorador() {
-      document.getElementById('ae-seletor-morador').classList.remove('open');
-    },
+    buscarUnidade() {
+      const q = (document.getElementById('wiz-unid-busca').value || '').trim().toLowerCase();
+      const el = document.getElementById('wiz-morador-lista');
+      if (q.length < 1) { el.innerHTML = ''; return; }
 
-    filtrarMoradores() {
-      const q = (document.getElementById('aesm-search').value || '').toLowerCase();
-      const lista = morDB.filter(m => m.ativo && (
-        !q ||
+      const mors = typeof morDB !== 'undefined' ? morDB.filter(m =>
         m.nome.toLowerCase().includes(q) ||
-        m.bloco.toLowerCase().includes(q) ||
-        m.unidade.toLowerCase().includes(q) ||
-        (m.cpf && m.cpf.includes(q))
-      ));
-      const el = document.getElementById('aesm-list');
-      if (!lista.length) {
-        el.innerHTML = '<div style="font-size:12px;color:var(--text-muted);padding:8px">Nenhum morador encontrado.</div>';
+        (m.bloco||'').toLowerCase().includes(q) ||
+        (m.unidade||'').toLowerCase().includes(q)
+      ).slice(0, 8) : [];
+
+      const unids = typeof unidDB !== 'undefined' ? unidDB.filter(u =>
+        (u.numero||'').toLowerCase().includes(q) ||
+        (u.bloco||'').toLowerCase().includes(q)
+      ).slice(0, 4) : [];
+
+      if (!mors.length && !unids.length) {
+        el.innerHTML = `<div style="font-size:12px;color:var(--text-muted);padding:8px">Nenhum morador/unidade encontrado</div>`;
         return;
       }
-      el.innerHTML = lista.map(m => {
+
+      el.innerHTML = mors.map(m => {
         const ini = m.nome.split(' ').slice(0,2).map(w=>w[0]).join('');
-        const avatarHtml = m.foto
-          ? `<div class="sm-av"><img src="${m.foto}"></div>`
-          : `<div class="sm-av">${ini}</div>`;
-        return `<div class="aesm-item" onclick="aeEntrada.selecionarMorador(${m.id})">
-          ${avatarHtml}
-          <div>
-            <div class="aesm-item-nome">${m.nome}</div>
-            <div class="aesm-item-meta">Bl.${m.bloco} · Un.${m.unidade} · ${m.perfil}</div>
+        const sel = wizMorSel?.id === m.id ? 'selected' : '';
+        return `<div class="wiz-morador-card ${sel}" onclick="buscaWiz.selecionarMorador(${m.id})">
+          <div class="wiz-morador-avatar">${m.foto?`<img src="${m.foto}">`:`<span>${ini}</span>`}</div>
+          <div class="wiz-morador-info">
+            <div class="wiz-morador-name">${m.nome}</div>
+            <div class="wiz-morador-meta">Bl. ${m.bloco} · Un. ${m.unidade} · ${m.perfil}</div>
           </div>
         </div>`;
       }).join('');
+
+      if (unids.length) {
+        el.innerHTML += unids.map(u => `
+          <div class="wiz-morador-card" onclick="buscaWiz.selecionarUnidade('${u.bloco}','${u.numero}')">
+            <div class="wiz-morador-avatar" style="background:rgba(46,160,67,.1);color:var(--green-glow)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            </div>
+            <div class="wiz-morador-info">
+              <div class="wiz-morador-name">Unidade ${u.numero}</div>
+              <div class="wiz-morador-meta">Bloco ${u.bloco} · ${u.tipo}</div>
+            </div>
+          </div>`).join('');
+      }
     },
 
     selecionarMorador(id) {
       const m = morDB.find(x => x.id === id);
       if (!m) return;
-      this._setVisitado(m);
-      this.fecharSeletorMorador();
+      wizMorSel = m;
+      document.getElementById('wiz-bloco').value     = m.bloco || '';
+      document.getElementById('wiz-unidade').value   = m.unidade || '';
+      document.getElementById('wiz-anfitriao').value = m.nome;
+      // Reatualiza lista para mostrar selecionado
+      this.buscarUnidade();
+      this._atualizarResumo();
     },
 
-    // ── Captura Facial ──────────────────────────────────
-    async abrirCaptura() {
-      document.getElementById('mod-captura-facial').classList.add('open');
-      document.getElementById('cf-btn-capturar').style.display = '';
-      document.getElementById('cf-btn-confirmar').style.display = 'none';
-      document.getElementById('cf-canvas').style.display = 'none';
-      document.getElementById('cf-placeholder').style.display = 'flex';
-      document.getElementById('cf-status').textContent = 'Iniciando câmera...';
-      try {
-        _aeStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode:'user', width:640, height:480 }, audio:false });
-        const video = document.getElementById('cf-video');
-        video.srcObject = _aeStream;
-        video.style.display = '';
-        document.getElementById('cf-placeholder').style.display = 'none';
-        document.getElementById('cf-status').textContent = 'Câmera ativa — posicione o rosto na elipse e clique em Capturar';
-      } catch(e) {
-        document.getElementById('cf-status').textContent = '⚠️ Câmera não disponível: ' + (e.message || e);
-      }
+    selecionarUnidade(bloco, numero) {
+      document.getElementById('wiz-bloco').value   = bloco;
+      document.getElementById('wiz-unidade').value = numero;
+      const titular = typeof morDB !== 'undefined' ?
+        morDB.find(m => m.unidade === numero && m.bloco === bloco && m.perfil === 'Titular') : null;
+      if (titular) document.getElementById('wiz-anfitriao').value = titular.nome;
+      this._atualizarResumo();
     },
 
-    capturarFrame() {
-      const video  = document.getElementById('cf-video');
-      const canvas = document.getElementById('cf-canvas');
-      if (!_aeStream && !video.srcObject) {
-        // sem câmera: simular captura com placeholder
-        document.getElementById('cf-status').textContent = '⚠️ Câmera não disponível. Use "Usar Foto do Perfil".';
-        return;
-      }
-      canvas.width  = video.videoWidth  || 640;
-      canvas.height = video.videoHeight || 480;
-      canvas.getContext('2d').drawImage(video, 0, 0);
-      canvas.style.display = '';
-      video.style.display  = 'none';
-      document.getElementById('cf-btn-capturar').style.display  = 'none';
-      document.getElementById('cf-btn-confirmar').style.display = '';
-      document.getElementById('cf-status').textContent = '✅ Imagem capturada — confirme ou recapture';
+    _atualizarResumo() {
+      const bloco    = document.getElementById('wiz-bloco').value;
+      const unidade  = document.getElementById('wiz-unidade').value;
+      const anfitr   = document.getElementById('wiz-anfitriao').value;
+      const nome     = document.getElementById('wiz-nome').value;
+      const tipo     = document.getElementById('wiz-tipo-display')?.value || wizTipoPessoa;
+      const motivo   = document.getElementById('wiz-motivo').value;
+      const placa    = document.getElementById('wiz-veic-placa').value || document.getElementById('wiz-placa').value;
+
+      const resumo = document.getElementById('wiz-resumo');
+      const corpo  = document.getElementById('wiz-resumo-corpo');
+      if (!nome && !bloco && !anfitr) { resumo.style.display='none'; return; }
+      resumo.style.display = 'block';
+
+      const linha = (l, v) => v ? `<div class="wiz-summary-row"><span class="wiz-summary-label">${l}</span><span class="wiz-summary-val">${v}</span></div>` : '';
+      corpo.innerHTML =
+        linha('Visitante/Prestador:', nome) +
+        linha('Tipo:', tipo) +
+        linha('Motivo:', motivo) +
+        linha('Unidade:', bloco && unidade ? `Bl. ${bloco} · Un. ${unidade}` : (bloco||unidade||'')) +
+        linha('Anfitrião:', anfitr) +
+        linha('Veículo:', placa);
     },
 
-    confirmarFoto() {
-      const canvas = document.getElementById('cf-canvas');
-      _aeFotoCapturada = canvas.toDataURL('image/jpeg', 0.85);
-      // Atualiza a foto na sidebar
-      const img = document.getElementById('ae-foto-img');
-      img.src = _aeFotoCapturada;
-      img.style.display = '';
-      document.getElementById('ae-foto-ini').style.display = 'none';
-      document.getElementById('ae-facial-status').textContent = '✅ Biometria facial capturada com sucesso';
-      this.fecharCaptura();
-      showToast('Foto capturada com sucesso', 'ok');
-    },
-
-    fecharCaptura() {
-      if (_aeStream) { _aeStream.getTracks().forEach(t => t.stop()); _aeStream = null; }
-      document.getElementById('mod-captura-facial').classList.remove('open');
-      document.getElementById('cf-video').srcObject = null;
-      document.getElementById('cf-video').style.display = 'none';
-    },
-
-    usarFotoPerfil() {
-      if (_aeDados?.dados?.foto) {
-        _aeFotoCapturada = _aeDados.dados.foto;
-        const img = document.getElementById('ae-foto-img');
-        img.src = _aeFotoCapturada;
-        img.style.display = '';
-        document.getElementById('ae-foto-ini').style.display = 'none';
-        document.getElementById('ae-facial-status').textContent = '✅ Foto do perfil carregada';
-        showToast('Foto do perfil aplicada', 'ok');
-      }
-    },
-
-    tirarFoto() { this.abrirCaptura(); },
-
-    // ── Autorizar / Pré-cadastrar ───────────────────────
-    _montarRegistro(status) {
-      const d = _aeDados?.dados || {};
-      const motivo = document.getElementById('ae-motivo').value || document.getElementById('ae-motivo-custom').value || 'Não informado';
-      const agora  = new Date();
-      const dtHoje = agora.toLocaleDateString('pt-BR');
-      const hora   = document.getElementById('ae-hora-entrada').value || agora.toTimeString().slice(0,5);
-      const rec = {
-        id:        Date.now(),
-        nome:      d.nome || 'Visitante',
-        doc_tipo:  d.doc_tipo || (d.cpf ? 'CPF' : d.rg ? 'RG' : 'Outro'),
-        doc:       d.cpf || d.rg || d.doc || '',
-        tel:       d.cel || d.tel || d.tel || '',
-        placa:     document.getElementById('ae-placa').value || '',
-        modelo:    document.getElementById('ae-modelo').value || '',
-        cor:       document.getElementById('ae-cor').value || '',
-        bloco:     _aeMorador?.bloco || '',
-        unidade:   _aeMorador?.unidade || '',
-        anfitriao: _aeMorador?.nome || '',
-        motivo,
-        perfil:    document.getElementById('ae-perfil').value,
-        empresa:   document.getElementById('ae-empresa').value || '',
-        obs:       document.getElementById('ae-obs-visita').value || '',
-        foto:      _aeFotoCapturada || d.foto || '',
-        status,
-        entrada:   status === 'dentro' ? `${dtHoje} ${hora}` : '',
-        saida:     '',
-        cadastro:  dtHoje,
+    carregarFoto(input) {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById('wiz-foto-preview').innerHTML = `<img src="${e.target.result}">`;
+        document.getElementById('wiz-foto-data').value = e.target.result;
+        document.getElementById('wiz-foto-remover').style.display = '';
       };
-      return rec;
+      reader.readAsDataURL(file);
     },
 
-    autorizar() {
-      if (!_aeMorador) {
-        showToast('⚠️ Selecione o morador visitado antes de autorizar', 'ok');
-        return;
-      }
-      const reg = this._montarRegistro('dentro');
-      visitDB.push(reg);
-      saveVisitDB();
-      // Atualiza evento no painel lateral
-      _ultimoEvento = { nome: reg.nome, perfil: reg.perfil, evento: 'AUTORIZADO', data: reg.entrada, local: 'PORTARIA' };
-      if (typeof renderUltimoEvento === 'function') renderUltimoEvento();
-      closeModule('mod-autorizar-entrada');
-      this.limpar();
-      showToast(`✅ Entrada autorizada — ${reg.nome}`, 'ok');
+    capturarCamera() {
+      const preview = document.getElementById('wiz-foto-preview');
+      preview.innerHTML = `<video id="wiz-cam-video" autoplay style="width:100%;height:100%;object-fit:cover;border-radius:10px"></video>`;
+      navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(stream => {
+        const video = document.getElementById('wiz-cam-video');
+        video.srcObject = stream;
+        video._stream = stream;
+        // Substituir botão por "Capturar"
+        const btns = document.querySelector('.wiz-foto-btns');
+        btns.innerHTML = `
+          <button class="btn btn-primary" style="font-size:11px;padding:6px 12px" onclick="buscaWiz._snapFoto()">📸 Capturar</button>
+          <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px" onclick="buscaWiz._cancelarCam()">Cancelar</button>`;
+      }).catch(() => alert('Câmera não disponível.'));
     },
 
-    preAutorizar() {
-      const reg = this._montarRegistro('aguard');
-      visitDB.push(reg);
-      saveVisitDB();
-      closeModule('mod-autorizar-entrada');
-      this.limpar();
-      showToast(`🟡 Visita pré-cadastrada — ${reg.nome}`, 'ok');
+    _snapFoto() {
+      const video = document.getElementById('wiz-cam-video');
+      if (!video) return;
+      const canvas = document.createElement('canvas');
+      canvas.width = 200; canvas.height = 200;
+      const ctx = canvas.getContext('2d');
+      const s = Math.min(video.videoWidth, video.videoHeight);
+      const ox = (video.videoWidth - s) / 2;
+      const oy = (video.videoHeight - s) / 2;
+      ctx.drawImage(video, ox, oy, s, s, 0, 0, 200, 200);
+      if (video._stream) video._stream.getTracks().forEach(t => t.stop());
+      const data = canvas.toDataURL('image/jpeg', .7);
+      document.getElementById('wiz-foto-preview').innerHTML = `<img src="${data}">`;
+      document.getElementById('wiz-foto-data').value = data;
+      document.getElementById('wiz-foto-remover').style.display = '';
+      // Restaurar botões foto
+      const btns = document.querySelector('.wiz-foto-btns');
+      btns.innerHTML = `
+        <label class="btn btn-secondary" style="cursor:pointer;font-size:11px;padding:6px 12px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Enviar foto<input type="file" accept="image/*" style="display:none" onchange="buscaWiz.carregarFoto(this)">
+        </label>
+        <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px" onclick="buscaWiz.capturarCamera()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Câmera
+        </button>
+        <button class="btn btn-secondary" style="font-size:11px;padding:6px 12px" id="wiz-foto-remover" onclick="buscaWiz.removerFoto()">Remover</button>`;
     },
 
-    limpar() {
-      _aeDados = null; _aeMorador = null; _aeFotoCapturada = null;
-      if (_aeStream) { _aeStream.getTracks().forEach(t=>t.stop()); _aeStream = null; }
-      ['ae-empresa','ae-obs-visita','ae-placa','ae-modelo','ae-cor','ae-motivo-custom'].forEach(id => {
-        const el = document.getElementById(id); if(el) el.value = '';
+    _cancelarCam() {
+      const video = document.getElementById('wiz-cam-video');
+      if (video && video._stream) video._stream.getTracks().forEach(t => t.stop());
+      document.getElementById('wiz-foto-preview').innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="7" r="4"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>`;
+    },
+
+    removerFoto() {
+      document.getElementById('wiz-foto-preview').innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="7" r="4"/><path d="M5 21c0-4 3.1-7 7-7s7 3 7 7"/></svg>`;
+      document.getElementById('wiz-foto-data').value = '';
+      document.getElementById('wiz-foto-remover').style.display = 'none';
+    },
+
+    _limparCampos() {
+      ['wiz-doc-input','wiz-cpf','wiz-rg','wiz-email','wiz-placa','wiz-empresa','wiz-cnpj',
+       'wiz-nome','wiz-tel','wiz-motivo','wiz-obs','wiz-veic-placa','wiz-veic-modelo','wiz-veic-cor',
+       'wiz-unid-busca','wiz-bloco','wiz-unidade','wiz-anfitriao','wiz-foto-data'].forEach(id => {
+        const el = document.getElementById(id); if (el) el.value = '';
       });
-      const sel = document.getElementById('ae-motivo'); if(sel) sel.value = '';
-      const sp  = document.getElementById('ae-perfil'); if(sp) sp.value = 'Visitante';
+      document.getElementById('wiz-tipo-display').value = 'Visitante';
+      document.getElementById('wiz-busca-resultado').style.display = 'none';
+      document.getElementById('wiz-morador-lista').innerHTML = '';
+      document.getElementById('wiz-resumo').style.display = 'none';
+      this.removerFoto();
+      // Resetar tipo pessoa
+      document.querySelectorAll('.wiz-type-btn').forEach((b,i) => b.classList.toggle('active', i===0));
+      // Resetar doc chips
+      document.querySelectorAll('.wiz-doc-chip').forEach((c,i) => c.classList.toggle('active', i===0));
+      wizDocTipo = 'CPF'; wizTipoPessoa = 'Visitante';
+    },
+
+    _goEtapa(n) {
+      wizEtapa = n;
+      [1,2,3].forEach(i => {
+        document.getElementById(`wiz-body-${i}`).style.display = i===n ? '' : 'none';
+        const stepEl = document.getElementById(`wiz-step-${i}`);
+        stepEl.classList.toggle('active', i===n);
+        stepEl.classList.toggle('done', i<n);
+      });
+      const subtitles = ['Etapa 1 — Identificação', 'Etapa 2 — Pré-cadastro', 'Etapa 3 — Vinculação'];
+      document.getElementById('wiz-subtitle').textContent = subtitles[n-1];
+      const infos = [
+        'Selecione o tipo e preencha ao menos um campo de documento',
+        'Confira os dados do visitante e adicione foto se necessário',
+        'Selecione a unidade/morador visitado e confirme a entrada'
+      ];
+      document.getElementById('wiz-footer-info').textContent = infos[n-1];
+      document.getElementById('wiz-btn-voltar').style.display    = n > 1 ? '' : 'none';
+      document.getElementById('wiz-btn-avancar').style.display   = n < 3 ? '' : 'none';
+      document.getElementById('wiz-btn-confirmar').style.display = n === 3 ? '' : 'none';
+    },
+
+    avancar() {
+      if (wizEtapa === 1) {
+        // Validar: pelo menos um campo doc ou doc-input
+        const docVal = document.getElementById('wiz-doc-input').value.trim();
+        const cpf    = document.getElementById('wiz-cpf').value.trim();
+        const rg     = document.getElementById('wiz-rg').value.trim();
+        const placa  = document.getElementById('wiz-placa').value.trim();
+        const email  = document.getElementById('wiz-email').value.trim();
+        if (!docVal && !cpf && !rg && !placa && !email) {
+          document.getElementById('wiz-doc-input').focus();
+          document.getElementById('wiz-doc-input').style.borderColor = 'var(--red)';
+          setTimeout(() => document.getElementById('wiz-doc-input').style.borderColor = '', 2000);
+          return;
+        }
+        // Se veio do cadastro existente, pré-preenche etapa 2
+        if (wizCadFound) {
+          const v = wizCadFound;
+          document.getElementById('wiz-nome').value   = v.nome || '';
+          document.getElementById('wiz-tel').value    = v.tel  || '';
+          document.getElementById('wiz-motivo').value = v.motivo || '';
+          document.getElementById('wiz-obs').value    = v.obs   || '';
+          document.getElementById('wiz-veic-placa').value  = v.placa  || placa;
+          document.getElementById('wiz-veic-modelo').value = v.modelo || '';
+          document.getElementById('wiz-tipo-display').value = wizTipoPessoa;
+          if (v.foto) {
+            document.getElementById('wiz-foto-preview').innerHTML = `<img src="${v.foto}">`;
+            document.getElementById('wiz-foto-data').value = v.foto;
+          }
+          // Pré-preenche etapa 3
+          document.getElementById('wiz-bloco').value     = v.bloco    || '';
+          document.getElementById('wiz-unidade').value   = v.unidade  || '';
+          document.getElementById('wiz-anfitriao').value = v.anfitriao || '';
+          document.getElementById('wiz-found-banner').style.display = 'flex';
+          document.getElementById('wiz-found-txt').textContent = 'Cadastro encontrado — dados preenchidos automaticamente';
+        } else {
+          // Preenche campos com o que foi digitado no campo principal
+          if (docVal) {
+            if (wizDocTipo === 'CPF')   document.getElementById('wiz-cpf').value   = docVal;
+            if (wizDocTipo === 'RG')    document.getElementById('wiz-rg').value    = docVal;
+            if (wizDocTipo === 'Placa') document.getElementById('wiz-placa').value = docVal;
+            if (wizDocTipo === 'Email') document.getElementById('wiz-email').value = docVal;
+          }
+          document.getElementById('wiz-found-banner').style.display = 'none';
+          // Pre-set veiculo placa
+          document.getElementById('wiz-veic-placa').value = document.getElementById('wiz-placa').value;
+          document.getElementById('wiz-tipo-display').value = wizTipoPessoa;
+        }
+        this._goEtapa(2);
+        setTimeout(() => document.getElementById('wiz-nome')?.focus(), 100);
+
+      } else if (wizEtapa === 2) {
+        const nome = document.getElementById('wiz-nome').value.trim();
+        if (!nome) {
+          document.getElementById('wiz-nome').focus();
+          document.getElementById('wiz-nome').style.borderColor = 'var(--red)';
+          setTimeout(() => document.getElementById('wiz-nome').style.borderColor = '', 2000);
+          return;
+        }
+        this._goEtapa(3);
+        this._atualizarResumo();
+        setTimeout(() => document.getElementById('wiz-unid-busca')?.focus(), 100);
+      }
+    },
+
+    voltar() {
+      if (wizEtapa > 1) this._goEtapa(wizEtapa - 1);
+    },
+
+    confirmar() {
+      const nome     = document.getElementById('wiz-nome').value.trim();
+      const cpf      = document.getElementById('wiz-cpf').value.trim();
+      const rg       = document.getElementById('wiz-rg').value.trim();
+      const email    = document.getElementById('wiz-email').value.trim();
+      const placa    = (document.getElementById('wiz-veic-placa').value || document.getElementById('wiz-placa').value).trim().toUpperCase();
+      const modelo   = document.getElementById('wiz-veic-modelo').value.trim();
+      const cor      = document.getElementById('wiz-veic-cor').value.trim();
+      const empresa  = document.getElementById('wiz-empresa').value.trim();
+      const cnpj     = document.getElementById('wiz-cnpj').value.trim();
+      const tipo     = document.getElementById('wiz-tipo-display').value;
+      const motivo   = document.getElementById('wiz-motivo').value.trim();
+      const obs      = document.getElementById('wiz-obs').value.trim();
+      const bloco    = document.getElementById('wiz-bloco').value.trim().toUpperCase();
+      const unidade  = document.getElementById('wiz-unidade').value.trim();
+      const anfitr   = document.getElementById('wiz-anfitriao').value.trim();
+      const foto     = document.getElementById('wiz-foto-data').value;
+      const tel      = document.getElementById('wiz-tel').value.trim();
+
+      const agora    = new Date();
+      const dataBr   = agora.toLocaleDateString('pt-BR');
+      const horaStr  = agora.toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
+
+      // Determinar doc_tipo e doc principal
+      let doc_tipo = 'CPF', doc = cpf || rg;
+      if (cpf) { doc_tipo = 'CPF'; doc = cpf; }
+      else if (rg) { doc_tipo = 'RG'; doc = rg; }
+      else if (email) { doc_tipo = 'Email'; doc = email; }
+
+      const novoId = Date.now();
+      const novoVisit = {
+        id: novoId, nome, doc, doc_tipo, email, tel,
+        placa, modelo: modelo + (cor ? ' ' + cor : ''),
+        empresa, cnpj, bloco, unidade, anfitriao: anfitr,
+        motivo, tipo, status: 'dentro',
+        entrada: dataBr + ' ' + horaStr, saida: '',
+        obs, foto, cadastro: dataBr
+      };
+
+      if (typeof visitDB !== 'undefined') {
+        visitDB.push(novoVisit);
+        saveVisitDB();
+      }
+
+      closeModule('mod-busca');
+
+      // Notificação de sucesso
+      const notif = document.createElement('div');
+      notif.style.cssText = 'position:fixed;bottom:24px;right:24px;background:var(--green-glow);color:#fff;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.3);display:flex;align-items:center;gap:10px';
+      notif.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="20 6 9 17 4 12"/></svg> Entrada autorizada: <strong>${nome}</strong>`;
+      document.body.appendChild(notif);
+      setTimeout(() => notif.remove(), 4000);
+
+      // Atualizar painel de visitantes se estiver aberto
+      if (typeof visitantes !== 'undefined' && document.getElementById('mod-visitantes').classList.contains('open')) {
+        visitantes.renderList();
+      }
+      if (typeof renderDashboard !== 'undefined') renderDashboard();
     },
   };
 
-  // Tecla F1 abre seletor de morador quando modal está aberto
-  document.addEventListener('keydown', e => {
-    if (e.key === 'F1' && document.getElementById('mod-autorizar-entrada').classList.contains('open')) {
-      e.preventDefault();
-      aeEntrada.abrirSeletorMorador();
-    }
-  });
+  // Alias para compatibilidade com o botão "Busca por Documento"
+  const busca = { open() { buscaWiz.open(); } };
 
-
+  // ══ MÓDULO VISITANTES ═════════════════════════════════
   let visitDB = JSON.parse(localStorage.getItem('visit_db') || '[]');
   if (!visitDB.length) {
     const hoje = new Date().toLocaleDateString('pt-BR');
@@ -7850,7 +7557,7 @@ ${tableHTML}
   document.querySelector('.tool-btn[title="Visitantes"]').addEventListener('click', () => visitantes.open());
 
   // Toolbar — Busca
-  document.querySelector('.tool-btn[title="Busca por Documento"]').addEventListener('click', () => busca.open());
+  document.querySelector('.tool-btn[title="Busca por Documento"]').addEventListener('click', () => buscaWiz.open());
 
   // Toolbar — Moradores
   document.querySelector('.tool-btn[title="Moradores"]').addEventListener('click', () => moradores.open());
