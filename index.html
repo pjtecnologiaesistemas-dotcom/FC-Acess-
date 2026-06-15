@@ -1667,121 +1667,142 @@
 
   /* ══ MÓDULO BUSCA ═════════════════════════════════════ */
   /* ── WIZARD ENTRADA ─────────────────────────────────── */
+  /* Modal centralizado e compacto */
+  #mod-busca {
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; /* sobrepõe o flex-direction:column do .mod-overlay.open */
+  }
+  #mod-busca .mod-panel {
+    flex: none;
+    width: 560px;
+    max-width: 96vw;
+    max-height: 88vh;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  }
+  @media (max-width: 600px) {
+    #mod-busca { align-items: flex-end; flex-direction: column; }
+    #mod-busca .mod-panel { width: 100%; max-width: 100%; max-height: 96vh; border-radius: 16px 16px 0 0; }
+  }
   .wiz-steps {
-    display: flex; align-items: center; gap: 0; padding: 16px 20px 0;
+    display: flex; align-items: center; gap: 0; padding: 10px 16px 0;
     border-bottom: 1px solid var(--border);
   }
   .wiz-step {
-    display: flex; align-items: center; gap: 8px; flex: 1;
-    font-size: 11px; font-weight: 600; color: var(--text-muted);
-    padding-bottom: 12px; border-bottom: 3px solid transparent;
+    display: flex; align-items: center; gap: 6px; flex: 1;
+    font-size: 10px; font-weight: 600; color: var(--text-muted);
+    padding-bottom: 9px; border-bottom: 3px solid transparent;
     cursor: default; transition: all .2s;
   }
   .wiz-step.active { color: var(--accent); border-bottom-color: var(--accent); }
   .wiz-step.done   { color: var(--green-glow); border-bottom-color: var(--green-glow); }
   .wiz-step-num {
-    width: 22px; height: 22px; border-radius: 50%; display: flex;
-    align-items: center; justify-content: center; font-size: 11px; font-weight: 800;
+    width: 18px; height: 18px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-size: 10px; font-weight: 800;
     background: var(--surface2); color: var(--text-muted); flex-shrink: 0;
     border: 2px solid var(--border);
   }
   .wiz-step.active .wiz-step-num { background: var(--accent); color: #fff; border-color: var(--accent); }
   .wiz-step.done   .wiz-step-num { background: var(--green-glow); color: #fff; border-color: var(--green-glow); }
-  .wiz-sep { width: 24px; height: 1px; background: var(--border); flex-shrink: 0; margin-bottom: 3px; }
+  .wiz-sep { width: 20px; height: 1px; background: var(--border); flex-shrink: 0; margin-bottom: 3px; }
 
-  .wiz-body { padding: 16px 20px; overflow-y: auto; max-height: calc(90vh - 200px); }
+  .wiz-body { padding: 12px 16px; overflow-y: auto; flex: 1; }
 
-  .wiz-field-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
-  .wiz-field { display: flex; flex-direction: column; gap: 4px; }
-  .wiz-field label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
+  .wiz-field-group { display: flex; flex-direction: column; gap: 9px; margin-bottom: 0; }
+  .wiz-field { display: flex; flex-direction: column; gap: 3px; }
+  .wiz-field label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
   .wiz-input {
-    width: 100%; padding: 9px 12px; border-radius: 8px;
+    width: 100%; padding: 7px 10px; border-radius: 7px;
     border: 1px solid var(--border); background: var(--surface2);
-    color: var(--text); font-size: 13px; box-sizing: border-box;
+    color: var(--text); font-size: 12px; box-sizing: border-box;
     transition: border-color .15s, box-shadow .15s;
   }
   .wiz-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(31,111,235,.12); }
-  .wiz-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px; }
+  .wiz-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
 
-  .wiz-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .wiz-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .wiz-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .wiz-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
-  .wiz-type-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .wiz-type-btns { display: flex; gap: 6px; flex-wrap: wrap; }
   .wiz-type-btn {
-    flex: 1; min-width: 100px; padding: 10px 8px; border-radius: 10px;
+    flex: 1; min-width: 80px; padding: 8px 6px; border-radius: 8px;
     border: 2px solid var(--border); background: var(--surface2);
-    color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer;
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--text-muted); font-size: 11px; font-weight: 600; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
     transition: all .15s;
   }
   .wiz-type-btn:hover { border-color: var(--accent); color: var(--accent); }
   .wiz-type-btn.active { border-color: var(--accent); background: rgba(31,111,235,.12); color: var(--accent); }
-  .wiz-type-btn svg { width: 22px; height: 22px; }
+  .wiz-type-btn svg { width: 18px; height: 18px; }
 
-  .wiz-doc-type-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .wiz-doc-type-chips { display: flex; gap: 5px; flex-wrap: wrap; }
   .wiz-doc-chip {
-    padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700;
     border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted);
     cursor: pointer; transition: all .15s;
   }
   .wiz-doc-chip.active { background: rgba(31,111,235,.15); color: var(--accent); border-color: var(--accent); }
 
   .wiz-foto-area {
-    display: flex; align-items: flex-start; gap: 16px;
+    display: flex; align-items: flex-start; gap: 12px;
   }
   .wiz-foto-preview {
-    width: 90px; height: 90px; border-radius: 12px; border: 2px dashed var(--border);
+    width: 76px; height: 76px; border-radius: 10px; border: 2px dashed var(--border);
     background: var(--surface2); display: flex; align-items: center; justify-content: center;
     overflow: hidden; flex-shrink: 0;
   }
   .wiz-foto-preview img { width: 100%; height: 100%; object-fit: cover; }
-  .wiz-foto-preview svg { width: 32px; height: 32px; color: var(--text-muted); opacity: .4; }
-  .wiz-foto-btns { display: flex; flex-direction: column; gap: 6px; }
+  .wiz-foto-preview svg { width: 26px; height: 26px; color: var(--text-muted); opacity: .4; }
+  .wiz-foto-btns { display: flex; flex-direction: column; gap: 5px; }
 
   .wiz-found-banner {
-    background: rgba(46,160,67,.12); border: 1px solid var(--green-dim); border-radius: 10px;
-    padding: 10px 14px; display: flex; align-items: center; gap: 10px;
-    font-size: 12px; color: var(--green-glow); font-weight: 600; margin-bottom: 14px;
+    background: rgba(46,160,67,.12); border: 1px solid var(--green-dim); border-radius: 8px;
+    padding: 8px 12px; display: flex; align-items: center; gap: 8px;
+    font-size: 11px; color: var(--green-glow); font-weight: 600; margin-bottom: 10px;
   }
-  .wiz-found-banner svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .wiz-found-banner svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-  .wiz-morador-list { display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; }
+  .wiz-morador-list { display: flex; flex-direction: column; gap: 5px; max-height: 160px; overflow-y: auto; }
   .wiz-morador-card {
-    display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 10px;
+    display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px;
     border: 2px solid var(--border); background: var(--surface2); cursor: pointer;
     transition: all .15s;
   }
   .wiz-morador-card:hover { border-color: var(--accent); }
   .wiz-morador-card.selected { border-color: var(--accent); background: rgba(31,111,235,.08); }
   .wiz-morador-avatar {
-    width: 36px; height: 36px; border-radius: 50%; background: var(--surface);
+    width: 30px; height: 30px; border-radius: 50%; background: var(--surface);
     border: 2px solid var(--border); display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 800; color: var(--accent); overflow: hidden; flex-shrink: 0;
+    font-size: 10px; font-weight: 800; color: var(--accent); overflow: hidden; flex-shrink: 0;
   }
   .wiz-morador-avatar img { width: 100%; height: 100%; object-fit: cover; }
   .wiz-morador-info { flex: 1; min-width: 0; }
-  .wiz-morador-name { font-size: 13px; font-weight: 700; color: var(--text); }
+  .wiz-morador-name { font-size: 12px; font-weight: 700; color: var(--text); }
   .wiz-morador-meta { font-size: 10px; color: var(--text-muted); }
 
   .wiz-footer {
-    display: flex; align-items: center; justify-content: space-between; padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between; padding: 10px 16px;
     border-top: 1px solid var(--border); gap: 8px; background: var(--surface);
-    border-radius: 0 0 16px 16px;
+    flex-shrink: 0;
   }
-  .wiz-footer-info { font-size: 11px; color: var(--text-muted); flex: 1; }
+  .wiz-footer-info { font-size: 10px; color: var(--text-muted); flex: 1; }
 
   .wiz-veiculo-row { display: flex; align-items: center; gap: 8px; }
-  .wiz-add-veiculo { font-size: 11px; padding: 6px 10px; }
-  .wiz-remove-btn { font-size: 11px; padding: 5px 8px; color: var(--red); border: 1px solid var(--red); background: transparent; border-radius: 6px; cursor: pointer; }
+  .wiz-add-veiculo { font-size: 11px; padding: 5px 8px; }
+  .wiz-remove-btn { font-size: 11px; padding: 4px 8px; color: var(--red); border: 1px solid var(--red); background: transparent; border-radius: 6px; cursor: pointer; }
   .wiz-remove-btn:hover { background: rgba(192,57,43,.1); }
 
   .wiz-summary-card {
-    background: var(--surface2); border-radius: 12px; padding: 14px 16px;
-    margin-bottom: 10px; border: 1px solid var(--border);
+    background: var(--surface2); border-radius: 10px; padding: 10px 12px;
+    margin-bottom: 8px; border: 1px solid var(--border);
   }
-  .wiz-summary-title { font-size: 10px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
-  .wiz-summary-row { display: flex; gap: 8px; font-size: 12px; margin-bottom: 4px; }
-  .wiz-summary-label { color: var(--text-muted); min-width: 100px; flex-shrink: 0; }
+  .wiz-summary-title { font-size: 9px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+  .wiz-summary-row { display: flex; gap: 8px; font-size: 11px; margin-bottom: 3px; }
+  .wiz-summary-label { color: var(--text-muted); min-width: 90px; flex-shrink: 0; }
   .wiz-summary-val { color: var(--text); font-weight: 600; }
 
   /* ─────────────────────────────────────────────────────── */
